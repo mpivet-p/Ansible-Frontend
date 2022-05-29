@@ -1,0 +1,28 @@
+.cluster-map {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.selecto-area {
+    width: 275px;
+    padding: 20px;
+}
+
+#selecto1 .station {
+    transition: all ease 0.2s;
+}
+
+.selecto-area .selected {
+    fill: #4af;
+}
+
+.station {
+    fill:#E5E5E5;
+}
+
+.row-name {
+    fill: #CCCCCC;
+    font-family: 'Helvetica-Bold';
+    font-size: 20px;
+}
