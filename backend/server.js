@@ -10,6 +10,7 @@ app.use(express.json());
 
 app.use('/api/user/', user);
 app.use('/api/reboot', reboot);
+app.use('/api/ping', reboot);
 app.use('*', (req, res) => res.status(404).json({error: "Not found"}));
 
 //CORS OPTIONS

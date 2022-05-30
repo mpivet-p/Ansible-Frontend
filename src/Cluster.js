@@ -1,33 +1,18 @@
 import React from 'react';
-// import { useParams } from 'react-router';
 import Selecto from 'react-selecto';
 import './Cluster.css';
 import ClusterMap from './c1.js';
+import RequestButton from './RequestButton';
 
 function Cluster({ clusterId }) {
     // let { clusterId } = useParams();
 
     return (
         <div className="container">
-
-            <button onClick={() => {
-                //Gathering all selected computers and creating an array with their names
-                let selected_elems = document.getElementsByClassName("selected");
-                let stations = [];
-                for (let i = 0; i < selected_elems.length; i++) {
-                    stations.push(selected_elems[i].id);
-                }
-
-                //POST request to express.JS containing the array and the type of operation requested
-                const requestOptions = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ task: "reboot", stations: stations })
-                };
-                fetch('/api/reboot', requestOptions)
-                    .then(response => response.json());
-            }}>Reboot</button>
-
+            <div className="cluster-controls">
+                <RequestButton buttonText="Reboot" endpoint="/api/reboot" taskName="reboot" />
+                <RequestButton buttonText="Ping" endpoint="/api/ping" taskName="ping" />
+            </div>
             <div className="cluster-map">
                 <Selecto
                     dragContainer={".elements"}

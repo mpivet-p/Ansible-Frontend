@@ -26,3 +26,30 @@
     font-family: 'Helvetica-Bold';
     font-size: 20px;
 }
+
+.cluster-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.request-btn {
+    font: inherit;
+    border: 2px solid #4af;
+    border-radius: 3px;
+    text-decoration: none;
+    color: black;
+    background-color: #f5f8fd;
+    padding: 8px 15px;
+    transition-duration: 0.4s
+}
+
+.request-btn:hover {
+    background-color: #4af;
+    color: white;
+}
+
+.request-btn:active {
+    background-color: rgb(11, 34, 53);
+    border-color: rgb(255, 255, 255);
+}
