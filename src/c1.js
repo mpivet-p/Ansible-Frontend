@@ -147,9 +147,9 @@ function ClusterMap() {
 			</g>
 			<g id="c1">
 				<text transform="matrix(1 0 0 1 130 27)" className="row-name">R17</text>
-        <text transform="matrix(1 0 0 1 130 59)" className="row-name">R16</text>
-        <text transform="matrix(1 0 0 1 130 92)" className="row-name">R15</text>
-        <text transform="matrix(1 0 0 1 130 125)" className="row-name">R14</text>
+				<text transform="matrix(1 0 0 1 130 59)" className="row-name">R16</text>
+				<text transform="matrix(1 0 0 1 130 92)" className="row-name">R15</text>
+				<text transform="matrix(1 0 0 1 130 125)" className="row-name">R14</text>
 				<text transform="matrix(1 0 0 1 130 158)" className="row-name">R13</text>
 				<text transform="matrix(1 0 0 1 130 191)" className="row-name">R12</text>
 				<text transform="matrix(1 0 0 1 130 224)" className="row-name">R11</text>

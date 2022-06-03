@@ -41,7 +41,7 @@
     color: black;
     background-color: #f5f8fd;
     padding: 8px 15px;
-    transition-duration: 0.4s
+    transition-duration: 0.4s;
 }
 
 .request-btn:hover {
@@ -52,4 +52,42 @@
 .request-btn:active {
     background-color: rgb(11, 34, 53);
     border-color: rgb(255, 255, 255);
+}
+
+.alert {
+    width: 300px;
+    max-height: 15px;
+    background-color: #eb4848;
+    color: white;
+    border-radius: 3px;
+    padding: 10px;
+    text-align: left;
+
+    transition-duration: 0.8s;
+    overflow-x: scroll;
+}
+
+#notifications-container {
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.alert-warning {
+    background-color: #ff9800;
+}
+
+.alert-success {
+    background-color: #04AA6D;
+}
+
+.alert-info {
+    background-color: #2196F3;
+}
+
+.blured {
+    filter: blur(2px);
 }

@@ -1,0 +1,35 @@
+.openday-form {
+    border-radius: 5px;
+    background-color: white;
+    height: 30vh;
+    width: 40vw;
+    max-width: 500px;
+    padding: 3vh;
+    display: flex;
+    justify-content: center;
+    box-shadow: 2px 2px 70px rgba(0, 0, 0, 0.4);
+}
+
+.btn {
+    font: inherit;
+    border: 2px solid #4af;
+    border-radius: 3px;
+    text-decoration: none;
+    color: white;
+    background-color: #4af;
+    padding: 8px 15px;
+    transition-duration: 0.4s;
+    margin: 10px;
+}
+
+.btn:hover {
+    box-shadow: 0 0 10px rgb(45, 128, 223);
+    background-color: rgb(28, 85, 134);
+    border-color: rgb(28, 85, 134);
+}
+
+.btn:active {
+    background-color: rgb(11, 34, 53);
+    border-color: rgb(255, 255, 255);
+    box-shadow: none;
+}
