@@ -3,7 +3,8 @@ import Selecto from 'react-selecto';
 import './Cluster.css';
 import ClusterMap from './c1.js';
 import RequestButton from './RequestButton';
-import ModalButton from './ModalButton';
+import OpendayModal from './OpendayModal.js';
+import BackgroundModal from './BackgroundModal.js';
 
 function Cluster({ clusterId }) {
     // let { clusterId } = useParams();
@@ -11,10 +12,10 @@ function Cluster({ clusterId }) {
     return (
         <div className="container">
             <div className="cluster-controls">
-                <RequestButton buttonText="Reboot" endpoint="/api/reboot" taskName="reboot" />
-                <RequestButton buttonText="Ping" endpoint="/api/ping" taskName="ping" />
-                <RequestButton buttonText="Change Backgrounds" endpoint="/api/ping" taskName="ping" />
-                <ModalButton buttonText="Start Openday" />
+                <RequestButton buttonText="Reboot" endpoint="/api/reboot" vars={{taskName: "reboot"}} />
+                <RequestButton buttonText="Ping" endpoint="/api/ping" vars={{taskName: "ping"}} />
+                <BackgroundModal buttonText="Change Backgrounds" />
+                <OpendayModal buttonText="Start Openday" />
             </div>
             <div className="cluster-map">
                 <Selecto

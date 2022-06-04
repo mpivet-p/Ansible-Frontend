@@ -7,7 +7,7 @@ function OpendayForm({handler}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        requestAndWait("/api/openday/start", "openday-start");
+        requestAndWait("/api/openday/start", { task: "openday-start", pdf: pdf});
         handler();
     }
 

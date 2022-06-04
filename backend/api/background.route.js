@@ -8,7 +8,7 @@ function sendResponse(res, output) {
     let response_content = prepareResponse(output);
 
     if (response_content["hosts_success"].length > 0) {
-        response_content["success_msgs"] = [`SUCCESS: ${response_content["hosts_success"].length} computer(s) ready for openday`];
+        response_content["success_msgs"] = [`SUCCESS: ${response_content["hosts_success"].length} background(s) changed`];
     }
     res.status(200).json(response_content);
 }
@@ -16,7 +16,7 @@ function sendResponse(res, output) {
 router.route('/').post((req, res) => {
     var stations = req.body.stations.map(str => str + ".42madrid.com").join(',');
 
-    var command = `ansible-playbook ../playbooks/openday/playbook/openday.yml -f 300 --limit "${stations}" --extra-vars background=openDayEvent.png --extra-vars version=${req.body.pdf} --tags "start,pdf"`
+    var command = `ansible-playbook ../playbooks/background-change.yml -f 300 --limit "${stations}" --extra-vars background=${req.body.background}`
 
     console.log(`${req.body.task} requested for ${req.body.stations.join(',')}`);
 

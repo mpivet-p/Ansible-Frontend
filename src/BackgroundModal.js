@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
-import OpendayForm from './OpendayForm';
+import BackgroundForm from './BackgroundForm';
 
-function ModalButton({ buttonText}) {
+function BackgroundModal({ buttonText, children }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleSubmitChildren = () => {
@@ -14,9 +14,9 @@ function ModalButton({ buttonText}) {
             <button className="request-btn" onClick={() => {
                 setIsOpen(true);
             }}>{buttonText}</button>
-            <Modal open={isOpen}><OpendayForm handler={handleSubmitChildren}/></Modal>
+            <Modal open={isOpen}><BackgroundForm handler={handleSubmitChildren} /></Modal>
         </div>
     );
 }
 
-export default ModalButton;
+export default BackgroundModal;
