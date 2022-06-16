@@ -5,6 +5,7 @@ import ClusterMap from './c1.js';
 import RequestButton from './RequestButton';
 import OpendayModal from './OpendayModal.js';
 import BackgroundModal from './BackgroundModal.js';
+import OpenLinkModal from './OpenLinkModal.js';
 
 function Cluster({ clusterId }) {
     // let { clusterId } = useParams();
@@ -16,6 +17,7 @@ function Cluster({ clusterId }) {
                 <RequestButton buttonText="Ping" endpoint="/api/ping" vars={{taskName: "ping"}} />
                 <BackgroundModal buttonText="Change Backgrounds" />
                 <OpendayModal buttonText="Start Openday" />
+                <OpenLinkModal buttonText="Open Link" />
             </div>
             <div className="cluster-map">
                 <Selecto

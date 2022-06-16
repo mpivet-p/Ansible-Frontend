@@ -16,7 +16,7 @@ function BackgroundForm({handler}) {
     }
 
     return (
-        <div className="background-form">
+        <div className="modal-form">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="background-choise">background: </label>
                 <select type="text" name="background" id="background-choice" onChange={handleChange}>
@@ -25,6 +25,7 @@ function BackgroundForm({handler}) {
                     <option value="pina.png">pina.png</option>
                     <option value="KC_0.png">KC_0.png</option>
                 </select><br />
+                <button type="button" className="btn" onClick={handler}>Cancel</button>
                 <input type="submit" value="Submit" className="btn" />
             </form>
         </div>

@@ -69,8 +69,8 @@
 
 #notifications-container {
     position: fixed;
-    top: 5px;
-    left: 5px;
+    top: 52px;
+    right: 5px;
     display: flex;
     flex-direction: column;
     gap: 5px;

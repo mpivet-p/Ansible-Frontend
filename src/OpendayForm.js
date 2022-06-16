@@ -16,7 +16,7 @@ function OpendayForm({handler}) {
     }
 
     return (
-        <div className="openday-form">
+        <div className="modal-form">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="pdfchoice">pdf name: </label>
                 <select type="text" name="pdf" id="pdfchoice" onChange={handleChange}>
@@ -26,6 +26,7 @@ function OpendayForm({handler}) {
                     <option value="openshell.pdf">shell</option>
                     <option value="openweb.pdf">web</option>
                 </select><br />
+                <button type="button" className="btn" onClick={handler}>Cancel</button>
                 <input type="submit" value="Submit" className="btn" />
             </form>
         </div>

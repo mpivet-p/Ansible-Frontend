@@ -1,10 +1,11 @@
-import express from "express"
-import cors from "cors"
-import user from "./api/user.route.js"
-import reboot from './api/reboot.route.js'
-import ping from './api/ping.route.js'
+import express from "express";
+import cors from "cors";
+import user from "./api/user.route.js";
+import reboot from './api/reboot.route.js';
+import ping from './api/ping.route.js';
 import openday from './api/openday.route.js';
 import background from './api/background.route.js';
+import auth from './api/auth.route.js';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use('/api/openday/start', openday);
 app.use('/api/reboot', reboot);
 app.use('/api/background', background);
 app.use('/api/ping', ping);
+app.use('/api/auth', auth);
 app.use('*', (req, res) => res.status(404).json({error: "Not found"}));
 
 //CORS OPTIONS
