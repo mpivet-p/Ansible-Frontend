@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function ClusterMap() {
+function Cluster2() {
 	const styleA = "c0-0.6,0.5-1,1-1h14c0.5,0,1,0.4,1,1v14c0,0.5-0.5,1-1,1H";
 	const styleB = "c-0.5,0-1-0.5-1-1V";
 
@@ -187,4 +187,4 @@ function ClusterMap() {
 	);
 }
 
-export default ClusterMap;
+export default Cluster2;

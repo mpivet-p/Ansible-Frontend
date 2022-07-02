@@ -5,6 +5,9 @@ import Error from './Error.js';
 import Auth from './Auth.js';
 import Navbar from './Navbar.js';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Cluster1 from './c1.js';
+import Cluster2 from './c2.js';
+import Cluster3 from './c3.js';
 
 
 function App() {
@@ -17,9 +20,9 @@ function App() {
             <Route index element={<Home />}/>
             <Route path="cluster">
               {/* <Route path=":clusterId" element={<Cluster />}/> */}
-              <Route path="1" element={<Cluster id={1} />}/>
-              <Route path="2" element={<Cluster id={2} />}/>
-              <Route path="3" element={<Cluster id={3} />}/>
+              <Route path="1" element={<Cluster><Cluster1 /></Cluster>}/>
+              <Route path="2" element={<Cluster><Cluster2 /></Cluster>}/>
+              <Route path="3" element={<Cluster><Cluster3 /></Cluster>}/>
             </Route>
             <Route path="auth" element={<Auth />}/>
           </Route>

@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { Children } from 'react';
 import Selecto from 'react-selecto';
 import './Cluster.css';
-import ClusterMap from './c1.js';
+import Cluster1 from './c1.js';
+import Cluster2 from './c2.js';
+import Cluster3 from './c3.js';
 import RequestButton from './RequestButton';
 import OpendayModal from './OpendayModal.js';
 import BackgroundModal from './BackgroundModal.js';
 import OpenLinkModal from './OpenLinkModal.js';
 
-function Cluster({ clusterId }) {
-    // let { clusterId } = useParams();
+function Cluster({ children }) {
 
     return (
         <div className="container">
@@ -39,7 +40,7 @@ function Cluster({ clusterId }) {
                 ></Selecto>
 
                 <div className="elements selecto-area" id="selecto1">
-                    <ClusterMap />
+                    {children}
                 </div>
             </div>
             <div id="notifications-container"></div>
