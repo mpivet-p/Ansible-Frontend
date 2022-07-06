@@ -1,7 +1,6 @@
 import fetch from "node-fetch";
 
-function testhdl(req, res, next) {
-    console.log(`auth_code: ${req.body.auth_code}`);
+function check_auth(req, res, next) {
     const requestOptions = {
         method: 'GET',
         headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${req.body.auth_code}`}
@@ -16,7 +15,7 @@ function testhdl(req, res, next) {
             .then((response) => {
                 return (response.json());
             }).then((response_content) => {
-                console.log(`Token belongs to ${response_content["login"]}`);
+                console.log(`Token from ${response_content["login"]}`);
                 if (response_content["staff?"] != true) {
                     res.status(403).json({'error': 'Forbidden'});
                 }
@@ -27,4 +26,4 @@ function testhdl(req, res, next) {
     }
 }
 
-export default testhdl;
+export default check_auth;

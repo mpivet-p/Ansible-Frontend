@@ -10,7 +10,7 @@ import openLink from './api/open-link.route.js'
 import passport from 'passport';
 import session from "express-session";
 import { Strategy } from "passport-42";
-import testhdl from './testhdl.js';
+import check_auth from './check_auth.js';
 
 
 passport.use(new Strategy({
@@ -19,8 +19,6 @@ passport.use(new Strategy({
     callbackURL: "http://localhost:5000/api/auth/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log(accessToken);
-    console.log(refreshToken);
     profile["token"] = accessToken;
     return cb(null, profile);
   }
@@ -43,19 +41,18 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.get('/api/auth',
-  passport.authenticate('42'));
-
 app.get('/api/auth/callback',
-  passport.authenticate('42', { failureRedirect: '/login' }),
+  passport.authenticate('42', { failureRedirect: 'http://localhost:3000/auth?failed=true' }),
   function(req, res) {
     if (req.user["_json"]["staff?"] != true)
-      res.redirect('http://localhost:3000');
+      res.redirect('http://localhost:3000/auth?failed=true');
     res.redirect(`http://localhost:3000/auth?access_token=${req.user.token}`);
   }
 );
 
-app.use(testhdl);
+app.use(check_auth);
+
+app.get('/api/auth', (req, res) => res.status(200));
 
 app.use('/api/user/', user);
 app.use('/api/openday/start', openday);

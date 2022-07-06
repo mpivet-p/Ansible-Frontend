@@ -1,9 +1,6 @@
-import React, { Children } from 'react';
+import React from 'react';
 import Selecto from 'react-selecto';
 import './Cluster.css';
-import Cluster1 from './c1.js';
-import Cluster2 from './c2.js';
-import Cluster3 from './c3.js';
 import RequestButton from './RequestButton';
 import OpendayModal from './OpendayModal.js';
 import BackgroundModal from './BackgroundModal.js';

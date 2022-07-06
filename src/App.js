@@ -8,12 +8,14 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Cluster1 from './c1.js';
 import Cluster2 from './c2.js';
 import Cluster3 from './c3.js';
+import AuthChecker from './AuthChecker.js';
 
 
 function App() {
   return (
     <Router>
       <div className="app" id="app">
+        {/* <AuthChecker /> */}
         <Navbar />
         <Routes>
           <Route path="/">

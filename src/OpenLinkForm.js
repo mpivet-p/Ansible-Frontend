@@ -8,13 +8,17 @@ function OpendayForm({handler}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("REQUEST sent");
         requestAndWait("/api/openlink/start", { task: "openlink-start", browser: browser, link: link});
         handler();
     }
 
     const handleChange = (event) => {
-        setLink(event.target.value);
+        if (event.target.id === "browserchoice") {
+            setBrowser(event.target.value)
+        }
+        else {
+            setLink(event.target.value);
+        }
     }
 
     return (
@@ -27,7 +31,7 @@ function OpendayForm({handler}) {
                     <option value="Firefox.app">Firefox</option>
                 </select><br />
                 <label htmlFor="link">Link</label>
-                <input type="text" name="link" /><br />
+                <input type="text" name="link" onChange={handleChange}/><br />
                 <button type="button" className="btn" onClick={handler}>Cancel</button>
                 <input type="submit" value="Submit" className="btn" />
             </form>
