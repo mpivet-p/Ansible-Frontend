@@ -3,10 +3,9 @@ import fetch from "node-fetch";
 function check_auth(req, res, next) {
     const requestOptions = {
         method: 'GET',
-        headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${req.body.auth_code}`}
+        headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${req.headers.auth42}`}
     };
-
-    if (!(req.body.auth_code)) {
+    if (!(req.headers.auth42)) {
         console.log("Unauthorized");
         res.status(401).json({'error': 'Not authorized'});
     }

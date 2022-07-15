@@ -8,7 +8,7 @@ function OpendayForm({handler}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        requestAndWait("/api/openlink/start", { task: "openlink-start", browser: browser, link: link});
+        requestAndWait("/api/openlink", { task: "openlink-start", browser: browser, link: link});
         handler();
     }
 

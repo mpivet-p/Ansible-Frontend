@@ -9,8 +9,10 @@ function requestAndWait(endpoint, vars) {
         vars.auth_code = getCookie("clustersToolsAuth");
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            auth_code: getCookie("clustersToolsAuth"),
+            headers: {
+                'Content-Type': 'application/json',
+                'Auth42': getCookie("clustersToolsAuth")
+            },
             body: JSON.stringify(vars)
         };
         fetch(endpoint, requestOptions)
@@ -27,6 +29,7 @@ function requestAndWait(endpoint, vars) {
                     generateAlert(null, response_content["failure_msgs"][i]);
                 }
             });
+        generateAlert("alert-info", `${vars.taskName} sent to ${vars.stations.length} computer(s)`);
     }
 }
 

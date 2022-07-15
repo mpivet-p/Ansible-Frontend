@@ -16,7 +16,7 @@ function sendResponse(res, output) {
 router.route('/').post((req, res) => {
     var stations = req.body.stations.map(str => str + ".42madrid.com").join(',');
 
-    var command = `ansible-playbook ../playbooks/impersonate.yml -f 300 --limit "${stations}" --extra-vars "open /Applications/${req.body.browser} ${req.body.link}"`
+    var command = `ansible-playbook ../playbooks/impersonate.yml -f 300 --limit "${stations}" --extra-vars command="open '/Applications/${req.body.browser}' '${req.body.link}'"`
 
     console.log(`${req.body.task} requested for ${req.body.stations.join(',')}`);
 

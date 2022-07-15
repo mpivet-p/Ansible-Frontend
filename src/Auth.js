@@ -18,8 +18,8 @@ function Auth() {
        window.location.href = "https://api.intra.42.fr/oauth/authorize?client_id=0f6655021889bb245a232b995a310a771b26fa2a2bfae2252d7e308e5c2ba7d0&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fapi%2Fauth%2Fcallback&response_type=code";
     }
     else if (auth_code != null) {
-        document.cookie = `clustersToolsAuth=${auth_code};SameSite=Lax`;
-        document.location.href = "http://localhost:3000";
+        document.cookie = `clustersToolsAuth=${auth_code};max-age=7000;SameSite=Lax`;
+        document.location.href = "http://localhost:3000/cluster/1";
     }
     return (null);
 }
