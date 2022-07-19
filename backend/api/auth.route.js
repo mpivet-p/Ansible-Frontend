@@ -9,7 +9,7 @@ router.route('/').post((req, res) => {
         client_id: process.env.API42_UID,
         client_secret: process.env.API42_SECRET,
         code: req.body.auth_code,
-        redirect_uri: "http://localhost:3000/auth"
+        redirect_uri: `${process.env.address}:5000/auth`
       };
     const requestOptions = {
         method: 'POST',

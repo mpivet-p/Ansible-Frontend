@@ -8,15 +8,17 @@ import background from './api/background.route.js';
 import auth from './api/auth.route.js';
 import openLink from './api/open-link.route.js'
 import passport from 'passport';
-import session from "express-session";
 import { Strategy } from "passport-42";
 import check_auth from './check_auth.js';
+import dotenv from "dotenv";
 
+dotenv.config();
+const PORT = process.env.PORT || 5000;
 
 passport.use(new Strategy({
     clientID: process.env.API42CT_ID,
     clientSecret: process.env.API42CT_SECRET,
-    callbackURL: "http://localhost:5000/api/auth/callback"
+    callbackURL: `${process.env.address}:5000/api/auth/callback"`
   },
   function(accessToken, refreshToken, profile, cb) {
     profile["token"] = accessToken;
@@ -36,17 +38,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use(session({ resave: false, saveUninitialized: false, secret: '!terceS' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 
 app.get('/api/auth/callback',
-  passport.authenticate('42', { failureRedirect: 'http://localhost:3000/auth?failed=true' }),
+  passport.authenticate('42', { failureRedirect: `${process.env.address}/auth?failed=true` }),
   function(req, res) {
     if (req.user["_json"]["staff?"] != true)
-      res.redirect('http://localhost:3000/auth?failed=true');
-    res.redirect(`http://localhost:3000/auth?access_token=${req.user.token}`);
+      res.redirect(`${process.env.address}/auth?failed=true`);
+    res.redirect(`${process.env.address}/auth?access_token=${req.user.token}`);
   }
 );
 
@@ -72,4 +73,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-export default app
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
+})

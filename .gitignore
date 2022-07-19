@@ -25,4 +25,8 @@ yarn-error.log*
 backend/node_modules
 .vscode
 playbooks/backgrounds
+.env
 .env.local
+frontend/.env
+backend/.env
+ignored_files

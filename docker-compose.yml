@@ -1,0 +1,29 @@
+version: "3.5"
+
+services:
+
+  frontend:
+    container_name: "frontend"
+    restart: always
+    env_file: .env
+    build:
+      context: ./frontend
+    volumes:
+      - ./playbooks:/playbooks:ro
+    networks:
+      - web
+
+  backend:
+    container_name: "backend"
+    restart: always
+    env_file: .env
+    build:
+      context: ./backend
+    networks:
+      - web
+    volumes:
+      - ./playbooks:/playbooks:ro
+
+networks:
+  web:
+    driver: bridge
