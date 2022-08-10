@@ -8,7 +8,7 @@ function OpendayForm({handler}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        requestAndWait("/api/openlink", { task: "openlink-start", browser: browser, link: link});
+        requestAndWait(`${process.env.REACT_APP_ADDRESS}/api/openlink`, { task: "openlink-start", browser: browser, link: link});
         handler();
     }
 
@@ -31,9 +31,12 @@ function OpendayForm({handler}) {
                     <option value="Firefox.app">Firefox</option>
                 </select><br />
                 <label htmlFor="link">Link</label>
-                <input type="text" name="link" onChange={handleChange}/><br />
-                <button type="button" className="btn" onClick={handler}>Cancel</button>
-                <input type="submit" value="Submit" className="btn" />
+                <input type="text" name="link" onChange={handleChange}/>
+                <br />
+                <div className="form-buttons">
+                    <button type="button" className="btn" onClick={handler}>Cancel</button>
+                    <input type="submit" value="Submit" className="btn" />
+                </div>
             </form>
         </div>
     );

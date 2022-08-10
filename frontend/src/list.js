@@ -1,4 +1,4 @@
 export function getList() {
-    return fetch('/api/user/mpivet-p')
+    return fetch('http://localhost:5000/api/user/mpivet-p')
     .then(data => data.json());
 }

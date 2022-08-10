@@ -5,11 +5,12 @@ WORKDIR /app
 COPY ["package.json", "package-lock.json", "./"]
 
 RUN npm install --production
+RUN npm install -g serve
 
 COPY . .
 
 RUN npm run build
 
-EXPOSE 3000
+ENV NODE_ENV=production
 
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["serve", "-s", "build"]

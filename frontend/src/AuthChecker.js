@@ -12,15 +12,15 @@ function AuthChecker() {
         };
         let auth_code = getCookie("clustersToolsAuth");
         if (auth_code != null) {
-            fetch('/api/auth', requestOptions)
+            fetch(`${process.env.REACT_APP_ADDRESS}/api/auth`, requestOptions)
             .then((response) => {
                 if (response.status === 401 || response.status === 403) {
-                    window.location.href = process.env.auth_link;
+                    window.location.href = process.env.REACT_APP_AUTH_LINK;
                 }
             });
         }
         else {
-            window.location.href = process.env.auth_link;
+            window.location.href = process.env.REACT_APP_AUTH_LINK;
         }
     }, []);
 }

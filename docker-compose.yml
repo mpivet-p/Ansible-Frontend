@@ -5,25 +5,12 @@ services:
   frontend:
     container_name: "frontend"
     restart: always
-    env_file: .env
+    env_file: ./frontend/.env
     build:
       context: ./frontend
     volumes:
       - ./playbooks:/playbooks:ro
+    ports:
+      - "80:3000"
     networks:
       - web
-
-  backend:
-    container_name: "backend"
-    restart: always
-    env_file: .env
-    build:
-      context: ./backend
-    networks:
-      - web
-    volumes:
-      - ./playbooks:/playbooks:ro
-
-networks:
-  web:
-    driver: bridge

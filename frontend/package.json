@@ -1,8 +1,8 @@
 {
-  "name": "mern-tuto",
+  "name": "clustertools",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://backend:5000",
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "node-fetch": "^3.2.5",
     "react": "^18.1.0",

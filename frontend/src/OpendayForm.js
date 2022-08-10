@@ -7,7 +7,7 @@ function OpendayForm({handler}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        requestAndWait("/api/openday/start", { task: "openday-start", pdf: pdf});
+        requestAndWait(`${process.env.REACT_APP_ADDRESS}/api/openday/start`, { task: "openday-start", pdf: pdf});
         handler();
     }
 
@@ -25,9 +25,12 @@ function OpendayForm({handler}) {
                     <option value="openrush.pdf">rush</option>
                     <option value="openshell.pdf">shell</option>
                     <option value="openweb.pdf">web</option>
-                </select><br />
-                <button type="button" className="btn" onClick={handler}>Cancel</button>
-                <input type="submit" value="Submit" className="btn" />
+                </select>
+                <br />
+                <div className="form-buttons">
+                    <button type="button" className="btn" onClick={handler}>Cancel</button>
+                    <input type="submit" value="Submit" className="btn" />
+                </div>
             </form>
         </div>
     );

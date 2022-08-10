@@ -18,7 +18,7 @@ function requestAndWait(endpoint, vars) {
         fetch(endpoint, requestOptions)
             .then((response) => {
                 if (response.status === 401 || response.status === 403) {
-                    window.location.href = process.env.auth_link;
+                    window.location.href = process.env.REACT_APP_AUTH_LINK;
                 }
                 return (response.json());
             }).then((response_content) => {

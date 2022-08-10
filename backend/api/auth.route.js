@@ -9,7 +9,7 @@ router.route('/').post((req, res) => {
         client_id: process.env.API42_UID,
         client_secret: process.env.API42_SECRET,
         code: req.body.auth_code,
-        redirect_uri: `${process.env.address}:5000/auth`
+        redirect_uri: `${process.env.ADDRESS}/api/auth/callback`
       };
     const requestOptions = {
         method: 'POST',
@@ -19,7 +19,8 @@ router.route('/').post((req, res) => {
     fetch("https://api.intra.42.fr/oauth/token", requestOptions)
         .then((response) => {
             return (response.json());
-        }).then((response_content) => {
+        })
+	.then((response_content) => {
             res.status(200).json(response_content);
         });
 });

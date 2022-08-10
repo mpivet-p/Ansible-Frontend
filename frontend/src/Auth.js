@@ -6,20 +6,20 @@ function Auth() {
     const failed = urlParams.get("failed") === "true";
 
     if (failed === true) {
-        window.history.replaceState({}, null, `${process.env.address}/auth`);
+        window.history.replaceState({}, null, `${process.env.REACT_APP_ADDRESS}/auth`);
         return (
             <div>
                 Auth failed
-                <a href={process.env.auth_link}>Try again</a>
+                <a href={process.env.REACT_APP_AUTH_LINK}>Try again</a>
             </div>
         )
     }
     else if (auth_code === null) {
-       window.location.href = process.env.auth_link;
+       window.location.href = process.env.REACT_APP_AUTH_LINK;
     }
     else if (auth_code != null) {
         document.cookie = `clustersToolsAuth=${auth_code};max-age=7000;SameSite=Lax`;
-        document.location.href = `${process.env.address}/cluster/1`;
+        document.location.href = `${process.env.REACT_APP_ADDRESS}/cluster/1`;
     }
     return (null);
 }

@@ -11,8 +11,8 @@ function Cluster({ children }) {
     return (
         <div className="container">
             <div className="cluster-controls">
-                <RequestButton buttonText="Reboot" endpoint="/api/reboot" vars={{taskName: "reboot"}} />
-                <RequestButton buttonText="Ping" endpoint="/api/ping" vars={{taskName: "ping"}} />
+                <RequestButton buttonText="Reboot" endpoint={`${process.env.REACT_APP_ADDRESS}/api/reboot`} vars={{taskName: "reboot"}} />
+                <RequestButton buttonText="Ping" endpoint={`${process.env.REACT_APP_ADDRESS}/api/ping`} vars={{taskName: "ping"}} />
                 <BackgroundModal buttonText="Change Backgrounds" />
                 <OpendayModal buttonText="Start Openday" />
                 <OpenLinkModal buttonText="Open Link" />

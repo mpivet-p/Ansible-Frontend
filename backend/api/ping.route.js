@@ -16,7 +16,7 @@ function sendResponse(res, output) {
 router.route('/').post((req, res) => {
     var stations = req.body.stations.map(str => str + ".42madrid.com").join(',');
 
-    var command = `ansible -m ping "${stations}" --task-timeout 5`
+    var command = `${process.env.CMD_PREFIX} ansible -m ping "${stations}" -T 5`
 
     console.log(`${req.body.taskName} requested for ${req.body.stations.join(',')}`);
 

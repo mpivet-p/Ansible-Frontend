@@ -1,13 +1,39 @@
 .modal-form {
-    border-radius: 5px;
-    background-color: white;
-    height: 30vh;
+    min-height: 30vh;
+    max-height: 50vh;
     width: 40vw;
-    max-width: 500px;
+    max-width: 600px;
+
+    border-radius: 5px;
+    box-shadow: 2px 2px 70px rgba(0, 0, 0, 0.4);
+    background-color: white;
     padding: 3vh;
+
     display: flex;
     justify-content: center;
-    box-shadow: 2px 2px 70px rgba(0, 0, 0, 0.4);
+}
+
+.modal-form .form-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.image-mosaic {
+    overflow: scroll;
+    max-height: 80%;
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.image-mosaic .radio-option {
+    margin: 3px;
+}
+
+.radio-option img {
+    border-radius: 3px;
 }
 
 .btn {
@@ -32,4 +58,17 @@
     background-color: rgb(11, 34, 53);
     border-color: rgb(255, 255, 255);
     box-shadow: none;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + img {
+    outline: 4px solid #4af;
+}
+
+.image-mosaic label {
+    line-height: 0px;
+    display: block;
 }
