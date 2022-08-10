@@ -24,35 +24,33 @@ function BackgroundForm({handler}) {
     const imagesList = importAll(require.context('../../playbooks/backgrounds', false, /\.(png|jpe?g|svg)$/));
 
     return (
-        <div>
-            <div className="modal-form">
-                <form onSubmit={handleSubmit}>
-                    <div  className="image-mosaic">
-                        {imagesList.map((image, index) => {
-                            const match = image.match(myRegex);
-                            const value = `${match[1]}.${match[2]}`;
-                            return (
-                                <div className="radio-option" key={index}>
-                                    <label>
-                                    <input
-                                        type="radio"
-                                        value={value}
-                                        id={value}
-                                        checked={background === value}
-                                        onChange={handleChange}
-                                    />
-                                        <img src={image} width="140" heigth="78.75" alt={`${match[1]}.${match[2]}`}/>
-                                    </label>
-                                </div>);
-                            })}
-                        </div>
-                    <br />
-                    <div className="form-buttons">
-                        <button type="button" className="btn" onClick={handler}>Cancel</button>
-                        <input type="submit" value="Submit" className="btn" />
+        <div className="modal-form">
+            <form onSubmit={handleSubmit}>
+                <div  className="image-mosaic">
+                    {imagesList.map((image, index) => {
+                        const match = image.match(myRegex);
+                        const value = `${match[1]}.${match[2]}`;
+                        return (
+                            <div className="radio-option" key={index}>
+                                <label>
+                                <input
+                                    type="radio"
+                                    value={value}
+                                    id={value}
+                                    checked={background === value}
+                                    onChange={handleChange}
+                                />
+                                    <img src={image} width="140" heigth="78.75" alt={`${match[1]}.${match[2]}`}/>
+                                </label>
+                            </div>);
+                        })}
                     </div>
-                </form>
-            </div>
+                <br />
+                <div className="form-buttons">
+                    <button type="button" className="btn" onClick={handler}>Cancel</button>
+                    <input type="submit" value="Submit" className="btn" />
+                </div>
+            </form>
         </div>
     );
 }
