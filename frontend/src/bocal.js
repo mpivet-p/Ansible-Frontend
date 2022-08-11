@@ -8,11 +8,16 @@ function Bocal() {
 		return (`M${x.toString()},${y.toString()}${styleA}${(x + 1).toString()}${styleB}${y.toString()}z`)
 	}
   	return (
-		<svg version="1.1" id="Bocal" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 175 470">
+		<svg version="1.1" id="Bocal" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 175 110">
 			<g id="bocal">
-				<path id="bocal-01" className="station" d={genShape(9, 14)}/>
-				<path id="bocal-02" className="station" d={genShape(26, 11)}/>
-				<path id="bocal-03" className="station" d={genShape(43, 14)}/>
+				<path id="bocal-01" className="station" d={genShape(43, 14)}/>
+				<path id="bocal-02" className="station" d={genShape(43, 46)}/>
+				<path id="bocal-03" className="station" d={genShape(43, 78)}/>
+			</g>
+			<g id="c1">
+				<text transform="matrix(1 0 0 1 90 27)" className="row-name">01</text>
+				<text transform="matrix(1 0 0 1 90 59)" className="row-name">02</text>
+				<text transform="matrix(1 0 0 1 90 92)" className="row-name">03</text>
 			</g>
 		</svg>
 	);

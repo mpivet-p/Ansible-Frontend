@@ -18,7 +18,7 @@ router.route('/').post((req, res) => {
 
     var command = `${process.env.CMD_PREFIX} ansible -m ping "${stations}" -T 5`
 
-    console.log(`${req.body.taskName} requested for ${req.body.stations.join(',')}`);
+    console.log(`${req.headers.auth42} -> {${command}}`);
 
     child_process.exec(command, (error, stdout, stderr) => {
         if (error) {

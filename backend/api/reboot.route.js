@@ -17,7 +17,8 @@ router.route('/').post((req, res) => {
     var stations = req.body.stations.map(str => str + ".42madrid.com").join(',');
 
     var command = `${process.env.CMD_PREFIX} ansible -bm reboot "${stations}"`
-    console.log(`${req.body.task} requested for ${req.body.stations.join(',')}`);
+
+    console.log(`${req.headers.auth42} -> {${command}}`);
 
     child_process.exec(command, (error, stdout, stderr) => {
         if (error) {

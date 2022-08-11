@@ -18,8 +18,7 @@ router.route('/').post((req, res) => {
 
     var command = `${process.env.CMD_PREFIX} ansible-playbook ../playbooks/background-change.yml -f 300 --limit "${stations}" --extra-vars background=${req.body.background}`
 
-    console.log(`${req.body.task} requested for ${req.body.stations.join(',')}`);
-
+    console.log(`${req.headers.auth42} -> {${command}}`);
     child_process.exec(command, (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);

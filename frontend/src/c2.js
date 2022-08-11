@@ -8,7 +8,7 @@ function Cluster2() {
 		return (`M${x.toString()},${y.toString()}${styleA}${(x + 1).toString()}${styleB}${y.toString()}z`)
 	}
   	return (
-		<svg version="1.1" id="Cluster_3" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 175 560">
+		<svg version="1.1" id="Cluster_3" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 175 620">
       		<g id="c2r1">
 				<path id="c2r1s1" className="station" d={genShape(9, 605)}/>
 				<path id="c2r1s2" className="station" d={genShape(26, 602)}/>
