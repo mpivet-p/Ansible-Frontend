@@ -1,14 +1,21 @@
 function prepareResponse(output) {
     const domain = ".42madrid.com";
-    output = JSON.parse(output);
 
-    let hosts_results = output["stats"];
     let response_content = {
         success_msgs: [],
         failure_msgs: [],
         hosts_success: [],
         hosts_failed: []
     }
+
+    try {
+        output = JSON.parse(output);
+    } catch (err) {
+        console.log(`output == {${output}}`);
+        response_content["hosts_success"].push(output);
+    }
+
+    let hosts_results = output["stats"];
 
     for (var host in hosts_results) {
         if (hosts_results[host]["unreachable"] != 0) {
@@ -24,4 +31,4 @@ function prepareResponse(output) {
     return (response_content);
 }
 
-export default prepareResponse;
+module.exports = prepareResponse;

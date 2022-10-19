@@ -1,9 +1,25 @@
-import React, { useState } from "react";
-import './Form.css';
-import requestAndWait from "./utils/requestAndWait";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import '../Form.css';
+import requestAndWait from "../utils/requestAndWait";
 
 function BackgroundForm({handler}) {
+    const [images, setImages] = useState([]);
     const [background, setBackground] = useState("metropolis.png");
+
+    const fetchProducts = async () => {
+        await axios.get(`${process.env.REACT_APP_ADDRESS}/api/background/list`, {
+            headers: {
+                "x-access-token": localStorage.getItem("token")
+            }
+        }).then(response => {
+            console.log(response.data.files);
+            setImages(response.data.files);
+        });
+    }
+    useEffect(() => {
+        fetchProducts();
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -15,32 +31,22 @@ function BackgroundForm({handler}) {
         setBackground(event.target.value);
     }
 
-    function importAll(r) {
-        return r.keys().map(r);
-    }
-
-    const myRegex = /\/static\/media\/(.*)\.[A-Za-z0-9]*\.(jpg|jpeg|png)/;
-
-    const imagesList = importAll(require.context('../../playbooks/backgrounds', false, /\.(png|jpe?g|svg)$/));
-
     return (
         <div className="modal-form">
             <form onSubmit={handleSubmit}>
                 <div  className="image-mosaic">
-                    {imagesList.map((image, index) => {
-                        const match = image.match(myRegex);
-                        const value = `${match[1]}.${match[2]}`;
+                    {images.map((image) => {
                         return (
-                            <div className="radio-option" key={index}>
+                            <div className="radio-option" key={image}>
                                 <label>
                                 <input
                                     type="radio"
-                                    value={value}
-                                    id={value}
-                                    checked={background === value}
+                                    value={image}
+                                    id={image}
+                                    checked={background === image}
                                     onChange={handleChange}
                                 />
-                                    <img src={image} width="140" heigth="78.75" alt={`${match[1]}.${match[2]}`}/>
+                                    <img src={`backgrounds/${image}`} width="140" heigth="78.75" alt={image}/>
                                 </label>
                             </div>);
                         })}

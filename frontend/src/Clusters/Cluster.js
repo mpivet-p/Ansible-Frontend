@@ -1,10 +1,11 @@
 import React from 'react';
 import Selecto from 'react-selecto';
 import './Cluster.css';
-import RequestButton from './RequestButton';
-import OpendayModal from './OpendayModal.js';
-import BackgroundModal from './BackgroundModal.js';
-import OpenLinkModal from './OpenLinkModal.js';
+import RequestButton from '../RequestButton';
+import OpendayModal from '../Openday/OpendayModal.js';
+import BackgroundModal from '../Background/BackgroundModal.js';
+import UploadBackgroundModal from '../UploadBackground/UploadBackgroundModal.js';
+import OpenLinkModal from '../OpenLink/OpenLinkModal.js';
 
 function Cluster({ children }) {
 
@@ -16,6 +17,7 @@ function Cluster({ children }) {
                 <BackgroundModal buttonText="Change Backgrounds" />
                 <OpendayModal buttonText="Start Openday" />
                 <OpenLinkModal buttonText="Open Link" />
+                <UploadBackgroundModal buttonText="Upload Background" />
             </div>
             <div className="cluster-map">
                 <Selecto

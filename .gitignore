@@ -32,3 +32,4 @@ frontend/node_modules
 backend/.env
 backend/node_modules
 ignored_files
+backend/scripts/venv

@@ -1,0 +1,11 @@
+.auth-form
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.auth-form form
+{
+    width: 400px;
+}

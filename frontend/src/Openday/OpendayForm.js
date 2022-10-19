@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import './Form.css';
-import requestAndWait from "./utils/requestAndWait";
+import '../Form.css';
+import requestAndWait from "../utils/requestAndWait";
 
 function OpendayForm({handler}) {
     const [pdf, setPdf] = useState("openc.pdf");

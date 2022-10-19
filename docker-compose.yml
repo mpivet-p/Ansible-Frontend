@@ -2,15 +2,25 @@ version: "3.5"
 
 services:
 
-  frontend:
-    container_name: "frontend"
-    restart: always
-    env_file: ./frontend/.env
-    build:
-      context: ./frontend
-    volumes:
-      - ./playbooks:/playbooks:ro
+#  frontend:
+#    container_name: "frontend"
+#    restart: always
+#    env_file: ./frontend/.env
+#    build:
+#      context: ./frontend
+#    volumes:
+#      - ./playbooks:/playbooks:ro
+#    ports:
+#      - "80:3000"
+#    networks:
+#      - web
+
+  mongodb:
+    image: mongo:5.0
     ports:
-      - "80:3000"
-    networks:
-      - web
+      - 27017:27017
+    volumes:
+      - ./mongo:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=clustertools
+      - MONGO_INITDB_ROOT_PASSWORD=clust3r

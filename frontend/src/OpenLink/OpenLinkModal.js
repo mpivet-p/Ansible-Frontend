@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
-import OpendayForm from './OpendayForm';
+import Modal from '../Modal';
+import OpenLinkForm from './OpenLinkForm';
 
-function OpendayModal({ buttonText, children }) {
+function OpenLinkModal({ buttonText, children }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleSubmitChildren = () => {
@@ -14,9 +14,9 @@ function OpendayModal({ buttonText, children }) {
             <button className="request-btn" onClick={() => {
                 setIsOpen(true);
             }}>{buttonText}</button>
-            <Modal open={isOpen}><OpendayForm handler={handleSubmitChildren} /></Modal>
+            <Modal open={isOpen}><OpenLinkForm handler={handleSubmitChildren} /></Modal>
         </div>
     );
 }
 
-export default OpendayModal;
+export default OpenLinkModal;
