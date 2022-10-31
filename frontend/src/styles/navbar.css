@@ -25,3 +25,7 @@ ul {
   .navbar-spacer {
     padding: 14px 42px;
   }
+
+  .navbar-right {
+    float: right;
+  }

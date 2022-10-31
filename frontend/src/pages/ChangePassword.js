@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
 import '../styles/LoginPage.css';
 
-function LoginPage() {
+function ChangePasswordPage() {
     const [inputs, setInputs] = useState({});
     const [error, setError] = useState();
 
     useEffect(() => {
-        if (inputs["password"] && inputs["email"]) {
+        if (inputs["password"] && inputs["confirm-password"] && (inputs["password"].length >= 8 || inputs["confirm-password"].length >= 8) && inputs["password"] === inputs["confirm-password"]) {
             let btn = document.getElementById("auth-submit");
             btn.disabled = false;
         }
@@ -16,10 +15,13 @@ function LoginPage() {
             let btn = document.getElementById("auth-submit");
             btn.disabled = true;
         }
+        if (inputs["password"] && inputs["confirm-password"] && inputs["password"] != inputs["confirm-password"]) {
+            document.getElementById("pwd-confirm-input").classList.add("input-error");
+        }
+        else {
+            document.getElementById("pwd-confirm-input").classList.remove("input-error");
+        }
     }, [inputs]);
-
-    if (localStorage.getItem("token"))
-        return(<Navigate replace to={{ pathname: '/' }} />);
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -28,9 +30,8 @@ function LoginPage() {
     }
 
     const setAuthToken = (token) => {
-        if (token) {
+        if (token)
             axios.defaults.headers.common["x-access-token"] = token;
-        }
         else
             delete axios.defaults.headers.common["x-access-token"];
     }
@@ -38,22 +39,19 @@ function LoginPage() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log(inputs);
-        axios.post(`${process.env.REACT_APP_ADDRESS}/login`, inputs)
+        axios.post(`${process.env.REACT_APP_ADDRESS}/changepwd`, inputs,
+            {headers: {
+                "x-access-token": localStorage.getItem("token")
+            }})
         .then(response => {
-            //get token from response
-            console.log('ERROR!!!!');
             const token  =  response.data.token;
             localStorage.setItem("token", token);
 
-            //set token to axios common header
             setAuthToken(token);
-
-            //redirect user to home page
             window.location.href = '/'
         })
         .catch(err => {
-            if (err.response.status == 400) {
+            if (err.response.status >= 400 && err.response.status < 500) {
                 console.log(err.response.data);
                 let error_p = document.getElementById("auth-status");
                 error_p.style.visibility = "visible";
@@ -61,17 +59,27 @@ function LoginPage() {
             }
         });
     }
+
+    const show_modif_user = () => {
+        if (userMod && userMod != "/changepassword") {
+            return (<p>{userMod}</p>);
+    }}
+
+    const userMod = window.location.pathname.split("/changepassword/").pop();
     return (
     <div className="auth-form">
         <form onSubmit={handleSubmit}>
-            <h1>Hello There!</h1>
-            <input type="text" id="email-input" name="email" placeholder="Email" onChange={handleChange} />
+            <h1>Change Password</h1>
+            <div>
+                {show_modif_user()}
+            </div>
             <input type="password" id="pwd-input" name="password" placeholder="Password" onChange={handleChange} />
+            <input type="password" id="pwd-confirm-input" name="confirm-password" placeholder="Confirm password" onChange={handleChange} />
             <div id="auth-status">
             </div>
-            <input id="auth-submit" type="submit" name="submit" value="Login" disabled={true} />
+            <input id="auth-submit" type="submit" name="submit" value="Change Password" disabled={true} />
         </form>
     </div>)
 }
 
-export default LoginPage;
+export default ChangePasswordPage;

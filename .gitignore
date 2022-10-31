@@ -33,3 +33,6 @@ backend/.env
 backend/node_modules
 ignored_files
 backend/scripts/venv
+mongo
+frontend/public/backgrounds
+backend/scripts/venv

@@ -25,10 +25,10 @@ app.use(express.json());
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '../playbooks/backgrounds')
+    cb(null, '../playbooks/backgrounds/')
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname)
+    cb(null, encodeURIComponent(file.originalname))
   },
 })
 
@@ -43,19 +43,17 @@ app.use(function (req, res, next) {
 });
 
 app.post("/api/ping", auth, ping);
-app.post("/api/background", auth, background);
 app.post("/api/openday", auth, openday);
 app.post("/api/reboot/", auth, reboot);
 app.post("/api/open-link", auth, open_link);
+app.post("/api/background", auth, background);
 app.post("/api/background/upload", [auth, upload.single('background-upload')] ,background_upload);
-
 app.get("/api/background/list", auth, background_list);
 
 app.post("/welcome", auth, (req, res) => {
     const token = req.body.token || req.query.token || req.headers["x-access-token"];
     try {
         const decoded = jwt.verify(token, process.env.TOKEN_KEY);
-        console.log(decoded);
     } catch (err) {
         ;
     }
@@ -158,24 +156,61 @@ app.post("/update", onlyAdmin, async (req, res) => {
   
 });
 
+app.post("/changepwd", auth, async (req, res) => {
+  try {
+    const { user, password } = req.body;
+
+    let email = "";
+    //Check the sender is admin if trying to modify an other user
+    if (user) {
+      const adminCheck = await User.findOne({ email: user });
+      if (!adminCheck) {
+          return (res.status(409).send("User does not exists"));
+      }
+      email = user;
+    } else {
+      email = req.user.email;
+    }
+
+    // Validate user input
+    if (!(password)) {
+      return res.status(400).send("Password is required!");
+    }
+    if (password.length < 8) {
+      return res.status(400).send("Password must be at least 8 characters long");
+    }
+    const userCheck = await User.findOne({ email: email });
+    if (!userCheck) {
+        return (res.status(409).send("User does not exists"));
+    }
+
+    //Actual Modification
+    encryptedPassword = await bcrypt.hash(password, 10);
+    const userUpdate = await User.updateOne({email: email}, {$set: {password: encryptedPassword}});
+
+    return res.status(201).json(await getTokensFromEmail(userCheck.email, userCheck));
+  } catch (err) {
+    console.log(err);
+  }
+
+});
+
 app.post("/login", async (req, res) => {
 
     try {
-
       const { email, password } = req.body;
  
       // Validate user input
       if (!(email && password)) {
-        res.status(400).send("All input is required");
+        return (res.status(400).send("All input is required"));
       }
       // Validate if user exist in our database
       const user = await User.findOne({ email });
   
       if (user && (await bcrypt.compare(password, user.password))) {
-        res.header
         return res.status(200).json(await getTokensFromEmail(email, user));
       }
-      res.status(400).send("Invalid Credentials");
+      return (res.status(400).send("Invalid Credentials"));
     } catch (err) {
       console.log(err);
     }

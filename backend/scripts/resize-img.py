@@ -9,6 +9,8 @@ def resize_image(img_path, img_name):
 	basewidth = 140
 	img = Image.open(img_path)
 	height = int(float(basewidth * img.size[1]) / img.size[0])
+	if height > 79:
+		height = 79
 	img = img.resize((basewidth, height), Image.Resampling.LANCZOS)
 	img.save(f"{OUTPUT_PATH}/{img_name}")
 

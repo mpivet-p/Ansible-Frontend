@@ -12,6 +12,8 @@ import LoginPage from "./pages/Login"
 import Cluster1 from './Clusters/c1.js';
 import Cluster2 from './Clusters/c2.js';
 import Cluster3 from './Clusters/c3.js';
+import ChangePasswordPage from "./pages/ChangePassword";
+import UsersListPage from "./pages/UsersListPage";
  
 function MyRoutes() {
    return (
@@ -21,10 +23,18 @@ function MyRoutes() {
             <Routes>
                 <Route path="/">
                     <Route path="cluster">
-                        <Route path="1" element={<Cluster><Cluster1 /></Cluster>}/>
-                        <Route path="2" element={<Cluster><Cluster2 /></Cluster>}/>
-                        <Route path="3" element={<Cluster><Cluster3 /></Cluster>}/>
-                        <Route path="bocal" element={<Cluster><Bocal /></Cluster>}/>
+                        <Route path="1" element={<RouteGuard><Cluster><Cluster1 /></Cluster></RouteGuard>}/>
+                        <Route path="2" element={<RouteGuard><Cluster><Cluster2 /></Cluster></RouteGuard>}/>
+                        <Route path="3" element={<RouteGuard><Cluster><Cluster3 /></Cluster></RouteGuard>}/>
+                        <Route path="bocal" element={<RouteGuard><Cluster><Bocal /></Cluster></RouteGuard>}/>
+                        
+                    </Route>
+                    <Route path="changepassword">
+                        <Route path=":user" element={<RouteGuard><ChangePasswordPage></ChangePasswordPage></RouteGuard>}/>
+                        <Route index element={<RouteGuard><ChangePasswordPage></ChangePasswordPage></RouteGuard>}/>
+                    </Route>
+                    <Route path="admin">
+                        <Route path="users" element={<RouteGuard><UsersListPage></UsersListPage></RouteGuard>}/>
                     </Route>
                     <Route exact path="/" element={<RouteGuard><Cluster><Bocal /></Cluster></RouteGuard>}/>
                 </Route>

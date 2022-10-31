@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import '../Form.css';
+import '../styles/Form.css';
 import requestAndWait from "../utils/requestAndWait";
 
 function BackgroundForm({handler}) {
@@ -46,7 +46,7 @@ function BackgroundForm({handler}) {
                                     checked={background === image}
                                     onChange={handleChange}
                                 />
-                                    <img src={`backgrounds/${image}`} width="140" heigth="78.75" alt={image}/>
+                                    <img src={`../backgrounds/${image}`} width="140" heigth="78.75" alt={image}/>
                                 </label>
                             </div>);
                         })}

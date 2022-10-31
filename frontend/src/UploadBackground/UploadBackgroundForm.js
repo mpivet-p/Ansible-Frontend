@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import '../Form.css';
+import '../styles/Form.css';
 
 function UploadBackgroundForm({handler}) {
     const [fileSelected, setFileSelected] = useState(null);

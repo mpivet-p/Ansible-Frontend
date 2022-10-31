@@ -18,8 +18,8 @@ async function getTokensFromEmail(email, user) {
         expiresIn: "3d",
       }
     );
+    const userUpdate = await User.updateOne({email: email}, {$set: {token: token}});
 
-    user.token = token;
     return ({token: token, refreshToken: refreshToken });
 }
 
