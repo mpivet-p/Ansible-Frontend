@@ -14,6 +14,10 @@ function UsersListPage() {
         })
         .catch(err => {
             if (err.response.status) {
+                if (err.response.status == 401) {
+                    localStorage.removeItem("token");
+                    window.location.href = "/login";
+                }
                 document.getElementsByClassName("users-list")[0].innerHTML = '<p>Error</p>';
             }
             console.log(err);

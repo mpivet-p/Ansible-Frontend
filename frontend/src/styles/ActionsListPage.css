@@ -1,0 +1,99 @@
+.actions-list {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    margin: auto;
+}
+
+.action {
+    background-color: rgb(255, 255, 255);
+    margin: 0 10px 10px;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.055);
+    /* word-wrap: break-word */
+}
+
+.action p {
+    line-height: 27px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    display: inline;
+}
+
+.action-success {
+    border: 1px solid rgba(23, 158, 23, 0.623);
+    border-bottom: 8px solid rgba(23, 158, 23, 0.623);
+}
+
+.action-errors {
+    border: 1px solid rgba(214, 125, 23, 0.623);
+    border-bottom: 8px solid rgba(214, 125, 23, 0.623);
+    /* border-image: linear-gradient(90deg, green 10%, red 0%, red 100%) 1; */
+}
+
+.action-failed {
+    border: 1px solid rgba(214, 23, 23, 0.623);
+    border-bottom: 8px solid rgba(214, 23, 23, 0.623);
+}
+
+.action-date {
+    float: right;
+    text-decoration: underline;
+}
+
+.host-label {
+    background-color: rgb(207, 207, 207);
+    -webkit-user-select: text; /* Safari */
+    -ms-user-select: text; /* IE 10 and IE 11 */
+    user-select: text; /* Standard syntax */
+}
+
+.label {
+    padding: 2px 8px;
+    border-radius: 100px; 
+}
+
+.label-fadeout {
+    background-color: rgb(110, 110, 110);
+    color: white;
+}
+
+.host-list .hidden {
+    width: 100px;
+}
+
+.label-fadeout-gradient {
+    position: relative; 
+    bottom: -0.4em;
+    height: 0em;
+    right: 3.3em;
+    display: inline-block;
+    width: 55px;
+    height: 25px;
+    pointer-events: none;
+    background: -webkit-linear-gradient(to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 50%
+    ); 
+    background-image: -moz-linear-gradient(to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 50%
+    );
+    background-image: -o-linear-gradient(to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 50%
+    );
+    background-image: -ms-linear-gradient(to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 50%
+    );
+    background-image: linear-gradient(to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 50%
+    );
+}

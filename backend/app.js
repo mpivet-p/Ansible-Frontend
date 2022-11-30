@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 
 const User = require("./model/user");
+const Action = require("./model/action");
 const auth = require("./middleware/auth");
 const onlyAdmin = require("./middleware/onlyAdmin");
 const getTokensFromEmail = require("./getTokens");
@@ -76,6 +77,33 @@ app.get("/users", onlyAdmin, async (req, res) => {
         const resultUsers = await User.find({}, { email: 1, kind: 1, _id: 0 });
         res.status(200).send(resultUsers);
     } catch (err) {
+        console.log(err);
+    }
+});
+
+app.get("/actions", auth, async (req, res) => {
+    var page = (req.query.page > 1) ? req.query.page : 0;
+    const page_size = 15;
+    try {
+        const resultActions = await Action.find({}, { __v: 0 }).sort({$natural:-1}).skip(page_size * page).limit(page_size);
+        var items_left = await Action.count() - (page_size * page + page_size);
+        res.setHeader("pages-left", Math.ceil(items_left / page_size));
+        res.setHeader("items-left", items_left);
+        res.status(200).send(resultActions);
+    } catch (err) {
+      console.log(err);
+    }
+});
+
+app.get("/actions/:id*", auth, async (req, res) => {
+    try {
+      var id = req.params.id;
+      if (id.length != 24) {
+        res.status(300).send("Action's id length must be 24");
+      }
+      const resultAction = await Action.find({ _id: id }, { __v: 0 });
+      res.status(200).send(resultAction);
+    } catch(err) {
         console.log(err);
     }
 });

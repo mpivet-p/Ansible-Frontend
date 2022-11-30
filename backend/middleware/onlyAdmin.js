@@ -16,6 +16,7 @@ const onlyAdmin = async (req, res, next) => {
     if (resultUser.kind != "admin") {
       return (res.status(401).send("Action require admin account"));
     }
+    req.user = decoded;
   } catch (err) {
     console.log(err);
     return res.status(401).send("Invalid Token");

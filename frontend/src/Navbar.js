@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import './styles/navbar.css'
 
 function Navbar() {
+
     const logoutHandler = (event) => {
         event.preventDefault();
         localStorage.removeItem("token");
@@ -20,6 +21,7 @@ function Navbar() {
             <li className="navbar-right"><a href="#" onClick={logoutHandler}>logout</a></li>
             <li className="navbar-right"><a href="/changepassword">Change Password</a></li>
             <li className="navbar-right"><a href="/admin/users">Users</a></li>
+            <li className="navbar-right"><a href="/actions">Actions</a></li>
         </ul>
     );
 }
