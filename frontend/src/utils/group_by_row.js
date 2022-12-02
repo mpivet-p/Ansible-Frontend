@@ -1,19 +1,33 @@
-const group_by_row = (hosts) => {
-    if (hosts.length == 0)
-        return ([]);
-    let new_hosts = [];
-    const row = hosts[0].slice(0, -2);
-    const regex = new RegExp(row + (row === "bocal-" ? "0[1-3]" : "s[1-6]"))
+const computers = {
+    "1": [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+    "2": [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+    "3": [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]
+}
+const cluster_sym = 'c'
+const row_sym = 'r';
+const seat_sym = 's';
+const exceptions = ["bocal-01", "bocal-02", "bocal-03"];
 
-    let matching = hosts.filter(host => regex.test(host));
-    if (matching.length == 6 || (row === "bocal-" && matching.length == 3)) {
-        new_hosts.push(row);
-    } else {
-        new_hosts = matching;
+function group_by_row(hosts) {
+    let result = [];
+    for (const [cluster, rows] of Object.entries(computers)) {
+        let tmp = [];
+        for (let i = 0; i < rows.length; i++) {
+            const regex = new RegExp(`${cluster_sym}${cluster}${row_sym}${i + 1}${seat_sym}\\d+$`);
+            let matching = hosts.filter(host => regex.test(host));
+            if (matching.length == rows[i]) {
+                tmp.push(`${cluster_sym}${cluster}${row_sym}${i + 1}`);
+            } else if (matching.length > 0) {
+                result = result.concat(matching);
+            }
+        }
+        if (tmp.length == rows.length)
+            result.push(`${cluster_sym}${cluster}`);
+        else
+            result = result.concat(tmp);
     }
-    matching.map(item => hosts.splice(hosts.indexOf(item), 1))
-
-    return (new_hosts.concat(group_by_row(hosts)));
+    result = result.concat(hosts.filter(x => exceptions.includes(x)))
+    return (result);
 }
 
 export default group_by_row;

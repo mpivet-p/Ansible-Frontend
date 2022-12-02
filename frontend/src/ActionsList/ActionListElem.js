@@ -4,6 +4,7 @@ import group_by_row from "../utils/group_by_row";
 
 function ActionListElem({action}) {
     const date = new Date(action.created_at)
+    var hosts = group_by_row(action.hosts).sort((a, b) => a.length - b.length);
 
     const actionStatus = (action) => {  
         if (action.hosts.length === action.hosts_successful.length) {
@@ -17,10 +18,9 @@ function ActionListElem({action}) {
 
     return (
         <div className={"action" + actionStatus(action)} onClick={(e) => {
-            console.log(e.target);
-            console.log(e.currentTarget);
+            window.location.href = `/actions/${action._id}`;
         }}>
-            <HostsList hosts={group_by_row(action.hosts)} />
+            <HostsList hosts={hosts} minimized={true} />
             <p>
                 <span className="action-date">
                     {`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`}

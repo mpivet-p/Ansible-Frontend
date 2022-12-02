@@ -15,6 +15,7 @@ import Cluster3 from './Clusters/c3.js';
 import ChangePasswordPage from "./pages/ChangePassword";
 import UsersListPage from "./pages/UsersListPage";
 import ActionsListPage from "./pages/ActionsListPage";
+import ActionDetails from "./ActionDetails";
  
 function MyRoutes() {
    return (
@@ -34,7 +35,7 @@ function MyRoutes() {
                         <Route index element={<RouteGuard><ChangePasswordPage></ChangePasswordPage></RouteGuard>}/>
                     </Route>
                     <Route path="actions">
-                        <Route path=":action" element={<RouteGuard><></></RouteGuard>}/>
+                        <Route path=":action_id" element={<RouteGuard><ActionDetails /></RouteGuard>}/>
                         <Route index element={<RouteGuard><ActionsListPage /></RouteGuard>}/>
                     </Route>
                     <Route path="admin">

@@ -82,16 +82,19 @@ app.get("/users", onlyAdmin, async (req, res) => {
 });
 
 app.get("/actions", auth, async (req, res) => {
-    var page = (req.query.page > 1) ? req.query.page : 0;
-    const page_size = 15;
+    var page = (req.query.page <= 1) ? 0 : req.query.page - 1;
+    const page_size = 8;
     try {
         const resultActions = await Action.find({}, { __v: 0 }).sort({$natural:-1}).skip(page_size * page).limit(page_size);
         var items_left = await Action.count() - (page_size * page + page_size);
+        if (items_left <= 0)
+            items_left = 0;
         res.setHeader("pages-left", Math.ceil(items_left / page_size));
-        res.setHeader("items-left", items_left);
+        res.setHeader("items-left", items_left > 0 ? items_left : 0);
+        res.setHeader("Access-Control-Expose-Headers", "pages-left,items-left")
         res.status(200).send(resultActions);
     } catch (err) {
-      console.log(err);
+        console.log(err);
     }
 });
 

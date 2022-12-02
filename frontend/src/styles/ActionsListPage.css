@@ -14,7 +14,6 @@
     border-radius: 5px;
     padding: 15px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.055);
-    /* word-wrap: break-word */
 }
 
 .action p {
@@ -96,4 +95,12 @@
         rgba(255, 255, 255, 0) 0%,
         rgba(255, 255, 255, 1) 50%
     );
+}
+
+.label-row {
+    background-color: rgb(155, 217, 241);
+}
+
+.label-cluster {
+    background-color: rgb(146, 255, 131);
 }
