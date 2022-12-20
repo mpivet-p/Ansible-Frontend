@@ -10,6 +10,7 @@ const actionSchema = new mongoose.Schema({
   done_at: { type: Date },
   hosts_successful: { type: [String] },
   hosts_failed: { type: [String] },
+  hosts_unreachable: { type: [String] },
 });
 
 module.exports = mongoose.model("action", actionSchema);

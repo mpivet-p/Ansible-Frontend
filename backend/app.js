@@ -61,6 +61,11 @@ app.post("/welcome", auth, (req, res) => {
     res.status(200).send("Welcome 🙌 ");
 });
 
+app.get("/check_token", auth, (req, res) => {
+  console.log("check_token valid.")
+  res.status(200).send("Token is valid!");
+});
+
 app.get("/user", auth, async (req, res) => {
     const token = req.body.token || req.query.token || req.headers["x-access-token"];
     try {

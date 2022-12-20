@@ -18,7 +18,21 @@ function LoginPage() {
         }
     }, [inputs]);
 
-    if (localStorage.getItem("token"))
+    const check_token = (token) => {
+        axios.defaults.headers.common["x-access-token"] = localStorage.getItem("token");
+        axios.get(`${process.env.REACT_APP_ADDRESS}/check_token`)
+        .then(response => {
+            if (response.status === 200) {
+                return true;
+            }
+            return false;
+        })
+        .catch(err => {
+            return false;
+        });
+    }
+
+    if (localStorage.getItem("token") && check_token(localStorage.getItem("token")) === false)
         return(<Navigate replace to={{ pathname: '/' }} />);
 
     const handleChange = (event) => {
@@ -37,8 +51,6 @@ function LoginPage() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        console.log(inputs);
         axios.post(`${process.env.REACT_APP_ADDRESS}/login`, inputs)
         .then(response => {
             //get token from response
@@ -61,6 +73,7 @@ function LoginPage() {
             }
         });
     }
+
     return (
     <div className="auth-form">
         <form onSubmit={handleSubmit}>

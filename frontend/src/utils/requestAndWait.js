@@ -20,7 +20,13 @@ function requestAndWait(endpoint, vars) {
                 }
             }
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            if (err.response.status == 401 || err.response.status === 403) {
+                window.location.href = "/login";
+            } else {
+                console.log(err);
+            }
+        });
         generateAlert("alert-info", `${vars.taskName} sent to ${vars.stations.length} computer(s)`);
     }
 }

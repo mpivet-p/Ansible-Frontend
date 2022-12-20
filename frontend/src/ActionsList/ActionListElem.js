@@ -16,10 +16,12 @@ function ActionListElem({action}) {
         }
     };
 
+    const green_part = action.hosts_successful.length / action.hosts.length * 100;
+    const orange_part = 100 - green_part;
     return (
         <div className={"action" + actionStatus(action)} onClick={(e) => {
             window.location.href = `/actions/${action._id}`;
-        }}>
+        }} style={{borderImage: `linear-gradient(90deg, var(--success-color) ${green_part}%, var(--failed-color) 0%, var(--failed-color) 100%) 1`}}>
             <HostsList hosts={hosts} minimized={true} />
             <p>
                 <span className="action-date">

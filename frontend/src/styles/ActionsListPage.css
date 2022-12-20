@@ -14,6 +14,12 @@
     border-radius: 5px;
     padding: 15px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.055);
+
+    --success-color: rgba(23, 158, 23, 0.623);
+    --error-color: rgba(214, 125, 23, 0.623);
+    --failed-color: rgba(214, 23, 23, 0.623);
+    border-bottom: 7px solid;
+    /* border-image: linear-gradient(90deg, green 50%, orange 50%, orange 70%, red 0%, red 100%) 1; */
 }
 
 .action p {
@@ -24,21 +30,20 @@
     display: inline;
 }
 
-.action-success {
-    border: 1px solid rgba(23, 158, 23, 0.623);
-    border-bottom: 8px solid rgba(23, 158, 23, 0.623);
-}
+/* .action-success { */
+    /* border: 1px solid rgba(23, 158, 23, 0.623); */
+    /* border-bottom: 8px solid rgba(23, 158, 23, 0.623); */
+/* } */
 
-.action-errors {
-    border: 1px solid rgba(214, 125, 23, 0.623);
-    border-bottom: 8px solid rgba(214, 125, 23, 0.623);
+/* .action-errors { */
+    /* border-bottom: 8px solid rgba(214, 125, 23, 0.623); */
     /* border-image: linear-gradient(90deg, green 10%, red 0%, red 100%) 1; */
-}
+/* } */
 
-.action-failed {
-    border: 1px solid rgba(214, 23, 23, 0.623);
-    border-bottom: 8px solid rgba(214, 23, 23, 0.623);
-}
+/* .action-failed { */
+    /* border: 1px solid rgba(214, 23, 23, 0.623); */
+    /* border-bottom: 8px solid rgba(214, 23, 23, 0.623); */
+/* } */
 
 .action-date {
     float: right;
@@ -46,7 +51,10 @@
 }
 
 .host-label {
-    background-color: rgb(207, 207, 207);
+    background-image: linear-gradient(45deg,
+        rgb(155, 217, 241) 0%,
+        rgb(138, 253, 238) 100%
+    );
     -webkit-user-select: text; /* Safari */
     -ms-user-select: text; /* IE 10 and IE 11 */
     user-select: text; /* Standard syntax */
@@ -98,9 +106,16 @@
 }
 
 .label-row {
-    background-color: rgb(155, 217, 241);
+    background-image: linear-gradient(to right,
+        rgb(21, 179, 241) 0%,
+        rgba(155, 217, 241, 1) 100%
+    );
 }
 
 .label-cluster {
-    background-color: rgb(146, 255, 131);
+    background-image: linear-gradient(45deg,
+        rgb(129, 115, 252) 0%,
+        rgb(21, 179, 241) 100%
+    );
+    color: whitesmoke;
 }
