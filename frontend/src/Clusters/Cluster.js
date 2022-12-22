@@ -6,19 +6,21 @@ import OpendayModal from '../Openday/OpendayModal.js';
 import BackgroundModal from '../Background/BackgroundModal.js';
 import UploadBackgroundModal from '../UploadBackground/UploadBackgroundModal.js';
 import OpenLinkModal from '../OpenLink/OpenLinkModal.js';
+import ClusterControls from './ClusterControls.js';
 
 function Cluster({ children }) {
 
     return (
         <div className="container">
-            <div className="cluster-controls">
+            <ClusterControls />
+            {/* <div className="cluster-controls">
                 <RequestButton buttonText="Reboot" endpoint={`${process.env.REACT_APP_ADDRESS}/api/reboot`} vars={{taskName: "reboot"}} />
                 <RequestButton buttonText="Ping" endpoint={`${process.env.REACT_APP_ADDRESS}/api/ping`} vars={{taskName: "ping"}} />
                 <BackgroundModal buttonText="Change Backgrounds" />
                 <OpendayModal buttonText="Start Openday" />
                 <OpenLinkModal buttonText="Open Link" />
                 <UploadBackgroundModal buttonText="Upload Background" />
-            </div>
+            </div> */}
             <div className="cluster-map">
                 <Selecto
                     dragContainer={".elements"}

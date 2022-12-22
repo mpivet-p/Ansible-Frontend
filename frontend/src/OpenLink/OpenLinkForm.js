@@ -8,7 +8,7 @@ function OpendayForm({handler}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        requestAndWait(`${process.env.REACT_APP_ADDRESS}/api/openlink`, { task: "openlink-start", browser: browser, link: link});
+        requestAndWait(`${process.env.REACT_APP_ADDRESS}/api/open-link`, {taskName: "open-link", extraVars: {browser: browser, link: link}});
         handler();
     }
 

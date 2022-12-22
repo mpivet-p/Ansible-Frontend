@@ -1,0 +1,15 @@
+---
+taskName: open-link
+route: "/api/open-link"
+displayName: "Open Link"
+clusterTask: true
+extraVars:
+  - browser:
+      inputType: select
+      options:
+        - Google Chrome.app: Google Chrome
+        - Safari.app: Safari
+        - Firefox.app: Firefox
+  - link:
+      inputType: text
+command: "ansible-playbook ../playbooks/impersonate.yml -f 300"

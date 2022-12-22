@@ -9,20 +9,29 @@ const User = require("./model/user");
 const Action = require("./model/action");
 const auth = require("./middleware/auth");
 const onlyAdmin = require("./middleware/onlyAdmin");
-const getTokensFromEmail = require("./getTokens");
+const getTokensFromEmail = require("./utils/getTokens");
 
 // API routes
-const ping = require("./api/ping.route.js");
 const background = require("./api/background.route.js");
-const reboot = require("./api/reboot.route.js");
-const openday = require("./api/openday.route.js");
-const open_link = require("./api/open-link.route.js");
 const background_upload = require("./api/upload-background.route.js");
 const background_list = require("./api/background-list.route");
+const taskList = require("./api/taskList.js");
 
 const app = express();
 
 app.use(express.json());
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,x-access-token');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
+// ROUTES AUTO SETUP
+const readConfigs = require("./utils/readConfigs.js");
+const playbooksConfigs = readConfigs();
+const setupRoutesFromConfigs = require('./utils/setupRoutes.js')(app, playbooksConfigs);
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -35,21 +44,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,x-access-token');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
-
-app.post("/api/ping", auth, ping);
-app.post("/api/openday", auth, openday);
-app.post("/api/reboot/", auth, reboot);
-app.post("/api/open-link", auth, open_link);
 app.post("/api/background", auth, background);
-app.post("/api/background/upload", [auth, upload.single('background-upload')] ,background_upload);
+app.post("/api/background/upload", [auth, upload.single('background-upload')], background_upload);
 app.get("/api/background/list", auth, background_list);
+app.get("/api/task-list", auth, taskList.bind(null, playbooksConfigs));
 
 app.post("/welcome", auth, (req, res) => {
     const token = req.body.token || req.query.token || req.headers["x-access-token"];

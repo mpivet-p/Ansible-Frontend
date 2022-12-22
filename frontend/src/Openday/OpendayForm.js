@@ -7,7 +7,7 @@ function OpendayForm({handler}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        requestAndWait(`${process.env.REACT_APP_ADDRESS}/api/openday/start`, { task: "openday-start", pdf: pdf});
+        requestAndWait(`${process.env.REACT_APP_ADDRESS}/api/openday/start`, { taskName: "start-openday", extraVars: {version: pdf}});
         handler();
     }
 

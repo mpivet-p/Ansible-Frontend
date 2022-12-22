@@ -23,7 +23,7 @@ function BackgroundForm({handler}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        requestAndWait(`${process.env.REACT_APP_ADDRESS}/api/background`, { task: "background-change", background: background});
+        requestAndWait(`${process.env.REACT_APP_ADDRESS}/api/background`, {taskName: "background-change", background: background});
         handler();
     }
 
