@@ -8,8 +8,11 @@ function TaskFormModal({ task }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        requestAndWait(`${process.env.REACT_APP_ADDRESS}${task.route}`, {taskName: task.taskName, extraVars: extraVars});
-        setIsOpen(false);
+        if (Object.keys(extraVars).length == task.extraVars.length) {
+            requestAndWait(`${process.env.REACT_APP_ADDRESS}${task.route}`, {taskName: task.taskName, extraVars: extraVars});
+            setIsOpen(false);
+            setExtraVars({});
+        }
     }
 
     const handleChange = (event) => {
@@ -28,6 +31,7 @@ function TaskFormModal({ task }) {
                     {task.extraVars.map((elem) => {
                         const [varName, varParams] = Object.entries(elem)[0];
                         if (varParams.inputType === "select") {
+                            extraVars[varName] = Object.entries(varParams.options[0])[0][0]; //Set the first element as the default one
                             return (<>
                                 <label htmlFor={`${task.taskName}:${varName}`}>{varName}</label>
                                 <select type="text" name={varName} id={`${task.taskName}:${varName}`} onChange={handleChange}>

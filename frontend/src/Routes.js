@@ -15,7 +15,7 @@ import Cluster3 from './Clusters/c3.js';
 import ChangePasswordPage from "./pages/ChangePassword";
 import UsersListPage from "./pages/UsersListPage";
 import ActionsListPage from "./pages/ActionsListPage";
-import ActionDetails from "./ActionDetails";
+import ActionDetails from "./pages/ActionDetails";
  
 function MyRoutes() {
    return (

@@ -114,7 +114,8 @@ app.get("/actions/:id*", auth, async (req, res) => {
     }
 });
 
-app.post("/register", onlyAdmin, async (req, res) => {
+// app.post("/register", onlyAdmin, async (req, res) => {
+app.post("/register", async (req, res) => {
   try {
 
     const { email, password, kind } = req.body;

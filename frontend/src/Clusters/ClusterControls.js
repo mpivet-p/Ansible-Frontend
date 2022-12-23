@@ -14,8 +14,12 @@ function ClusterControls() {
                 "x-access-token": localStorage.getItem("token")
             }
         }).then(response => {
-            console.log(response.data);
             setTasks(response.data);
+        }).catch (e => {
+            if (e.response.status == 401) {
+                window.location.href = '/login'
+            }
+            console.log(e);
         });
     }
 

@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import HostsList from "./ActionsList/HostsList";
-import PrettyPrintJson from "./PrettyPrintJson";
-import './styles/ActionDetails.css';
+import HostsList from "../ActionsList/HostsList";
+import PrettyPrintJson from "../ActionsList/PrettyPrintJson";
+import '../styles/ActionDetails.css';
 
 function ActionDetails() {
     const [action, setAction] = useState();
