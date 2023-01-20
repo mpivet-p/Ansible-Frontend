@@ -38,7 +38,7 @@ const storage = multer.diskStorage({
     cb(null, '../playbooks/backgrounds/')
   },
   filename: (req, file, cb) => {
-    cb(null, encodeURIComponent(file.originalname))
+    cb(null, encodeURIComponent(file.originalname.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-zA-Z0-9-_.]+/g,'')))
   },
 })
 
@@ -114,8 +114,7 @@ app.get("/actions/:id*", auth, async (req, res) => {
     }
 });
 
-// app.post("/register", onlyAdmin, async (req, res) => {
-app.post("/register", async (req, res) => {
+app.post("/register", onlyAdmin, async (req, res) => {
   try {
 
     const { email, password, kind } = req.body;
@@ -131,7 +130,7 @@ app.post("/register", async (req, res) => {
     encryptedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       email: email.toLowerCase(),
-      kind: (kind) ? kind.toLowerCase() : "user",
+      kind: (kind) ? kind.toLowerCase() : "guest",
       password: encryptedPassword,
     });
 
@@ -147,6 +146,26 @@ app.post("/register", async (req, res) => {
     res.status(201).json(user);
   } catch (err) {
     console.log(err);
+  }
+
+});
+
+app.post("/delete_user", onlyAdmin, async (req, res) => {
+  try {
+
+    const { email } = req.body;
+    if (!(email)) {
+      res.status(400).send("All input is required.");
+    }
+
+    const result = await User.deleteOne({ "email": email });
+    if (result.deletedCount === 1) {
+      return (res.status(200).send("User deleted from database."));
+    }
+    res.status(500).send("Internal Server Error");
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("");
   }
 
 });

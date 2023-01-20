@@ -42,3 +42,16 @@ div.weekly-logtime {
 h2 {
     margin: 0.8vh;
 }
+
+.container {
+    height: 84%;
+}
+
+input[type=text], input[type=password] {
+    padding: 5px;
+    font-size: 12pt;
+}
+
+select {
+    padding: 5px;
+}

@@ -6,6 +6,7 @@
     flex-direction: column;
     gap: 10px;
     margin: auto;
+    margin-top: 15px;
 }
 
 .action {
@@ -19,7 +20,7 @@
     --error-color: rgba(214, 125, 23, 0.623);
     --failed-color: rgba(214, 23, 23, 0.623);
     border-bottom: 7px solid;
-    /* border-image: linear-gradient(90deg, green 50%, orange 50%, orange 70%, red 0%, red 100%) 1; */
+
 }
 
 .action p {
@@ -29,21 +30,6 @@
     user-select: none; /* Standard syntax */
     display: inline;
 }
-
-/* .action-success { */
-    /* border: 1px solid rgba(23, 158, 23, 0.623); */
-    /* border-bottom: 8px solid rgba(23, 158, 23, 0.623); */
-/* } */
-
-/* .action-errors { */
-    /* border-bottom: 8px solid rgba(214, 125, 23, 0.623); */
-    /* border-image: linear-gradient(90deg, green 10%, red 0%, red 100%) 1; */
-/* } */
-
-/* .action-failed { */
-    /* border: 1px solid rgba(214, 23, 23, 0.623); */
-    /* border-bottom: 8px solid rgba(214, 23, 23, 0.623); */
-/* } */
 
 .action-date {
     float: right;

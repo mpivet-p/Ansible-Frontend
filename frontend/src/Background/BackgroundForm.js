@@ -13,7 +13,6 @@ function BackgroundForm({handler}) {
                 "x-access-token": localStorage.getItem("token")
             }
         }).then(response => {
-            console.log(response.data.files);
             setImages(response.data.files);
         });
     }
@@ -32,7 +31,7 @@ function BackgroundForm({handler}) {
     }
 
     return (
-        <div className="modal-form">
+        <div className="modal-form" id="background-modal">
             <form onSubmit={handleSubmit}>
                 <div  className="image-mosaic">
                     {images.map((image) => {

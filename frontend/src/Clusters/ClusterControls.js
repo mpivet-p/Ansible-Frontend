@@ -16,7 +16,7 @@ function ClusterControls() {
         }).then(response => {
             setTasks(response.data);
         }).catch (e => {
-            if (e.response.status == 401) {
+            if (e.response.status === 401) {
                 window.location.href = '/login'
             }
             console.log(e);

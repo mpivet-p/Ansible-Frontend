@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import '../styles/UsersListPage.css';
+import CreateUser from "../CreateUser";
 
 function UsersListPage() {
     const [users, setUsers] = useState([]);
@@ -14,7 +15,7 @@ function UsersListPage() {
         })
         .catch(err => {
             if (err.response.status) {
-                if (err.response.status == 401) {
+                if (err.response.status === 401) {
                     localStorage.removeItem("token");
                     window.location.href = "/login";
                 }
@@ -22,7 +23,7 @@ function UsersListPage() {
             }
             console.log(err);
         });
-    }, [])
+    }, [users])
 
     const role_change = (event, email) => {
         axios.post(`${process.env.REACT_APP_ADDRESS}/update`, {email: email, kind: event.target.value}, {headers: {"x-access-token": localStorage.getItem("token")}})
@@ -34,6 +35,26 @@ function UsersListPage() {
             }
         });
     };
+
+    const deleteUser = (user) => {
+        if (window.confirm(`Are you sure you want to delete permanently the user "${user}"`) !== true) {
+            return;
+        }
+        axios.defaults.headers.common["x-access-token"] = localStorage.getItem("token");
+        axios.post(`${process.env.REACT_APP_ADDRESS}/delete_user`, {"email": user})
+        .then(response => {
+        })
+        .catch(err => {
+            if (err.response.status) {
+                if (err.response.status === 401) {
+                    localStorage.removeItem("token");
+                    window.location.href = "/login";
+                }
+            }
+            console.log(err);
+        });
+    };
+
 
     const role_selector = (current, email) => {
         return (
@@ -54,9 +75,10 @@ function UsersListPage() {
                         <td>{user.email}</td>
                         <td>{role_selector(user.kind, user.email)}</td>
                         <td><button className="request-btn" onClick={() => {window.location = `/changepassword/${user.email}`}}>Change password</button></td>
-                        <td><button className="request-btn" >Delete</button></td>
+                        <td><button className="request-btn btn-delete" onClick={e => {deleteUser(user.email)}} >Delete</button></td>
                     </tr>);
                 })}
+                    <CreateUser />
                 </tbody>
             </table>
         </div>

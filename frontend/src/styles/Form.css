@@ -1,7 +1,7 @@
 .modal-form {
     height: fit-content;
-    width: 40vw;
-    max-width: 600px;
+    width: 30vw;
+    max-width: 400px;
 
     border-radius: 5px;
     box-shadow: 2px 2px 70px rgba(0, 0, 0, 0.4);
@@ -10,6 +10,11 @@
 
     display: flex;
     justify-content: center;
+}
+
+#background-modal {
+    width: 60vw;
+    max-width: 60vw;
 }
 
 .modal-form .form-buttons {
@@ -70,4 +75,9 @@ input[type="radio"]:checked + img {
 .image-mosaic label {
     line-height: 0px;
     display: block;
+}
+
+.task-note {
+    font-style: italic;
+    color: grey;
 }

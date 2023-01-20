@@ -9,7 +9,7 @@ function ActionsListPage() {
 
     useEffect(() => {
         fetch_actions(pageCount);
-    }, []);
+    }, [pageCount]);
 
     const fetch_actions = (page) => {
         axios.get(`${process.env.REACT_APP_ADDRESS}/actions?page=${page}`, {headers: {"x-access-token": localStorage.getItem("token")}})
@@ -23,7 +23,7 @@ function ActionsListPage() {
         .catch(err => {
             if (err.response.status) {
                 //Redirect to login if token invalid
-                if (err.response.status == 401) {
+                if (err.response.status === 401) {
                     localStorage.removeItem("token");
                     window.location.href = "/login";
                 }

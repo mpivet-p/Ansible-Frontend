@@ -9,7 +9,7 @@ function Cluster1() {
 	}
   	return (
 		<svg version="1.1" id="Cluster_3" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 175 560">
-      <g id="c1r1">
+			<g id="c1r1">
 				<path id="c1r1s1" className="station" d={genShape(9, 541)}/>
 				<path id="c1r1s2" className="station" d={genShape(26, 538)}/>
 				<path id="c1r1s3" className="station" d={genShape(43, 541)}/>
@@ -17,7 +17,7 @@ function Cluster1() {
 				<path id="c1r1s5" className="station" d={genShape(77, 541)}/>
 				<path id="c1r1s6" className="station" d={genShape(94, 538)}/>
 			</g>
-      <g id="c1r2">
+			<g id="c1r2">
 				<path id="c1r2s1" className="station" d={genShape(9, 508)}/>
 				<path id="c1r2s2" className="station" d={genShape(26, 505)}/>
 				<path id="c1r2s3" className="station" d={genShape(43, 508)}/>
@@ -25,7 +25,7 @@ function Cluster1() {
 				<path id="c1r2s5" className="station" d={genShape(77, 508)}/>
 				<path id="c1r2s6" className="station" d={genShape(94, 505)}/>
 			</g>
-      <g id="c1r3">
+			<g id="c1r3">
 				<path id="c1r3s1" className="station" d={genShape(9, 475)}/>
 				<path id="c1r3s2" className="station" d={genShape(26, 472)}/>
 				<path id="c1r3s3" className="station" d={genShape(43, 475)}/>

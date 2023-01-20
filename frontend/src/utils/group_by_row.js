@@ -15,13 +15,13 @@ function group_by_row(hosts) {
         for (let i = 0; i < rows.length; i++) {
             const regex = new RegExp(`${cluster_sym}${cluster}${row_sym}${i + 1}${seat_sym}\\d+$`);
             let matching = hosts.filter(host => regex.test(host));
-            if (matching.length == rows[i]) {
+            if (matching.length === rows[i]) {
                 tmp.push(`${cluster_sym}${cluster}${row_sym}${i + 1}`);
             } else if (matching.length > 0) {
                 result = result.concat(matching);
             }
         }
-        if (tmp.length == rows.length)
+        if (tmp.length === rows.length)
             result.push(`${cluster_sym}${cluster}`);
         else
             result = result.concat(tmp);

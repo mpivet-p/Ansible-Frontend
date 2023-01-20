@@ -19,8 +19,8 @@ async function taskHandler(confs, req, res) {
         const formatSuccessMsg = (insert) => {
             return (`SUCCESS:  ${insert}`);
         };
-        if (playbook.clusterTask == true) {
-            if (playbook.playbook == true) {
+        if (playbook.clusterTask === true) {
+            if (playbook.playbook === true) {
                 command += ` --limit "${stations}"`;
             } else {
                 command += ` "${stations}"`;

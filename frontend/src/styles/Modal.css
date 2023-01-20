@@ -11,6 +11,23 @@
     transition-duration: 0.4s;
 }
 
-select {
-    width: 100px;
+.modal-form input[type=text], .modal-form select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    height: 35px;
+    font-size: 12pt;
+    border: 1px solid rgb(168, 168, 168);
+    border-radius: 3px;
+}
+.modal-form label {
+    font-weight: bold;
+}
+
+.modal-form form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
 }

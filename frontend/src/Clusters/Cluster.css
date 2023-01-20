@@ -2,11 +2,28 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    height: 100%;
 }
 
 .selecto-area {
     width: 275px;
+    height: 100%;
     padding: 20px;
+}
+
+svg {
+    display: block;
+    height: 100%;
+}
+
+svg text {
+    -webkit-touch-callout: none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -o-user-select:none;
+    user-select:none;
 }
 
 #selecto1 .station {
@@ -31,6 +48,7 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+    margin-top: 15px;
 }
 
 .request-btn {

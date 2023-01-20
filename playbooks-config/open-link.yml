@@ -3,6 +3,7 @@ taskName: open-link
 route: "/api/open-link"
 displayName: "Open Link"
 clusterTask: true
+note: "Choose a link to be opened with the chosen browser"
 extraVars:
   - browser:
       inputType: select

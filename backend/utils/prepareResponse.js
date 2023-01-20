@@ -1,5 +1,5 @@
 function prepareResponse(output) {
-    const domain = ".42madrid.com";
+    const domain = `.${process.env.CAMPUS_DOMAIN}`;
 
     let response_content = {
         success_msgs: [],

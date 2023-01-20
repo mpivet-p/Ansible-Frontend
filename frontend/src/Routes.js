@@ -20,7 +20,6 @@ import ActionDetails from "./pages/ActionDetails";
 function MyRoutes() {
    return (
         <BrowserRouter location={history.location}>
-            {/* <RouteGuard><Navbar /></RouteGuard> */}
             <Navbar />
             <Routes>
                 <Route path="/">

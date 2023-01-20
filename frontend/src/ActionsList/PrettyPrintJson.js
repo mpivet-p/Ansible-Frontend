@@ -1,8 +1,8 @@
 function PrettyPrintJson({data}) {
     return (<div>
-                <pre>
+                <pre><code>
                     {JSON.stringify(data, null, 2) }
-                </pre>
+                </code></pre>
             </div>
     );
 }

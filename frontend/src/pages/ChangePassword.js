@@ -4,7 +4,6 @@ import '../styles/LoginPage.css';
 
 function ChangePasswordPage() {
     const [inputs, setInputs] = useState({});
-    const [error, setError] = useState();
 
     useEffect(() => {
         if (inputs["password"] && inputs["confirm-password"] && (inputs["password"].length >= 8 || inputs["confirm-password"].length >= 8) && inputs["password"] === inputs["confirm-password"]) {
@@ -15,7 +14,7 @@ function ChangePasswordPage() {
             let btn = document.getElementById("auth-submit");
             btn.disabled = true;
         }
-        if (inputs["password"] && inputs["confirm-password"] && inputs["password"] != inputs["confirm-password"]) {
+        if (inputs["password"] && inputs["confirm-password"] && inputs["password"] !== inputs["confirm-password"]) {
             document.getElementById("pwd-confirm-input").classList.add("input-error");
         }
         else {
@@ -61,7 +60,7 @@ function ChangePasswordPage() {
     }
 
     const show_modif_user = () => {
-        if (userMod && userMod != "/changepassword") {
+        if (userMod && userMod !== "/changepassword") {
             return (<p>{userMod}</p>);
     }}
 

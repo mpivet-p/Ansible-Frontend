@@ -1,8 +1,6 @@
 import React, { useState } from "react"
 
 function HostsList({hosts, minimized}) {
-    // const [displayList, setDisplayList] = useState(hosts);
-    // const [displayList, setDisplayList] = useState(hosts.slice(0, 4));
     const [displayList, setDisplayList] = useState(minimized ? hosts.slice(0, 4) : hosts);
 
     const hostsLabel = (host) => {
@@ -16,6 +14,8 @@ function HostsList({hosts, minimized}) {
                 break;
             case /^c\d$/.test(host):
                 baseClass += " label-cluster";
+                break;
+            default:
                 break;
         }
         return (

@@ -161,7 +161,6 @@ function Cluster2() {
 				<path id="c2r19s5" className="station" d={genShape(77, 14)}/>
 				<path id="c2r19s6" className="station" d={genShape(94, 11)}/>
 			</g>
-			
 			<g id="c1">
 				<text transform="matrix(1 0 0 1 130 27)" className="row-name">R19</text>
 				<text transform="matrix(1 0 0 1 130 59)" className="row-name">R18</text>

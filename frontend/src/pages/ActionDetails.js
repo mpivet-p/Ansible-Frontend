@@ -16,7 +16,7 @@ function ActionDetails() {
         })
         .catch(err => {
             if (err.response.status) {
-                if (err.response.status == 401) {
+                if (err.response.status === 401) {
                     localStorage.removeItem("token");
                     window.location.href = "/login";
                 }
@@ -24,25 +24,30 @@ function ActionDetails() {
             }
             console.log(err);
         });
-    }, []);
+    }, [action_id]);
 
     if (action) {
+        const date_creat = new Date(action.created_at);
+        const date_done = new Date(action.done_at);
         return (
-            <div className="action-detail">
-                <p>Task: {action.task}</p>
-                <p>Author: {action.from}</p>
-                <p>Started at: {action.created_at}</p>
-                <p>Completed at: {action.done_at}</p>
-                <div className="hosts-success">
-                    <p>Task successfully completed:</p>
-                    <HostsList hosts={action.hosts_successful} minimized={false} />
-                </div>
-                <div className="hosts-failed">
-                    <p>Task failed:</p>
-                    <HostsList hosts={action.hosts_failed} minimized={false} />
-                </div>
-                <div className="command-json">
-                    <PrettyPrintJson data={{"command": action.command, "output" : action.result}}/>
+            <div className="container-action-detail">
+                <div className="action-detail">
+                    <p>Task: {action.task}</p>
+                    <p>Author: {action.from}</p>
+                    <p>Started at: {date_creat.toLocaleDateString()} {date_creat.toLocaleTimeString()}</p>
+                    <p>Completed at: {date_done.toLocaleDateString()} {date_done.toLocaleTimeString()}</p>
+                    <div className="hosts-success">
+                        <p>Task(s) completed:</p>
+                        <HostsList hosts={action.hosts_successful} minimized={false} />
+                    </div>
+                    <div className="hosts-failed">
+                        <p>Task(s) failed:</p>
+                        <HostsList hosts={action.hosts_failed} minimized={false} />
+                    </div>
+                    <p>Output:</p>
+                    <div className="command-json">
+                        <PrettyPrintJson data={{"command": action.command, "output" : action.result}}/>
+                    </div>
                 </div>
             </div>
         );

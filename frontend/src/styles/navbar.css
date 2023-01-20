@@ -1,6 +1,6 @@
 ul {
     list-style-type: none;
-    margin: 0 0 20px 0;
+    margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: rgb(19, 146, 250);
@@ -16,6 +16,7 @@ ul {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    text-underline-offset: 8px;
   }
   
   li a:hover {

@@ -16,3 +16,17 @@ table, th, td {
 td, tr {
     padding: 12px;
 }
+
+.btn-delete {
+    border-color: rgb(255, 37, 37);
+}
+
+.btn-delete:hover {
+    background-color: rgb(243, 40, 40);
+    color: white;
+}
+
+.btn-delete:active {
+    background-color: rgb(114, 18, 18);
+    border-color: rgb(255, 255, 255);
+}

@@ -5,7 +5,6 @@ import '../styles/LoginPage.css';
 
 function LoginPage() {
     const [inputs, setInputs] = useState({});
-    const [error, setError] = useState();
 
     useEffect(() => {
         if (inputs["password"] && inputs["email"]) {
@@ -25,9 +24,11 @@ function LoginPage() {
             if (response.status === 200) {
                 return true;
             }
+            localStorage.removeItem("token");
             return false;
         })
         .catch(err => {
+            localStorage.removeItem("token");
             return false;
         });
     }
@@ -54,7 +55,6 @@ function LoginPage() {
         axios.post(`${process.env.REACT_APP_ADDRESS}/login`, inputs)
         .then(response => {
             //get token from response
-            console.log('ERROR!!!!');
             const token  =  response.data.token;
             localStorage.setItem("token", token);
 
@@ -65,8 +65,7 @@ function LoginPage() {
             window.location.href = '/'
         })
         .catch(err => {
-            if (err.response.status == 400) {
-                console.log(err.response.data);
+            if (err.response.status === 400) {
                 let error_p = document.getElementById("auth-status");
                 error_p.style.visibility = "visible";
                 error_p.innerHTML = `<p>${err.response.data}</p>`;

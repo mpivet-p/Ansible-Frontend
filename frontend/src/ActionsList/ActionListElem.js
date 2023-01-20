@@ -17,7 +17,7 @@ function ActionListElem({action}) {
     };
 
     const green_part = action.hosts_successful.length / action.hosts.length * 100;
-    const orange_part = 100 - green_part;
+    // const orange_part = 100 - green_part;
     return (
         <div className={"action" + actionStatus(action)} onClick={(e) => {
             window.location.href = `/actions/${action._id}`;
