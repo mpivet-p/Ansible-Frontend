@@ -18,7 +18,7 @@ async function completeAction(id, stdout, response_content) {
         result: stdout,
         done_at: new Date(),
         hosts_successful: response_content["hosts_success"],
-        hosts_failed: response_content["hosts_failed"]
+        hosts_unreachable: response_content["hosts_unreachable"]
     }});
     return (actionUpdate._id);
 }
@@ -31,9 +31,9 @@ async function executeCommand(req, res, command, formatSuccessMsg, taskName) {
             console.log(`error: ${error.message}`);
         }
         let response_content = prepareResponse(stdout);
-        response_content["hosts_success"] = ["c1r1s1.42madrid.com"]; // Only for development
-        // response_content["hosts_success"] = []; // Only for development
-        // response_content["hosts_failed"] = ["c1r1s1.42madrid.com"]; // Only for development
+        // response_content["hosts_success"] = ["c2r12s5.42madrid.com"]; // Only for development
+        // // response_content["hosts_success"] = []; // Only for development
+        // // response_content["hosts_failed"] = ["c1r1s1.42madrid.com"]; // Only for development
         completeAction(id, stdout, response_content);
         if (response_content["hosts_success"].length > 0) {
             response_content["success_msgs"] = [formatSuccessMsg(response_content["hosts_success"].length)];

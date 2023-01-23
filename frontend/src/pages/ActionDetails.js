@@ -37,16 +37,20 @@ function ActionDetails() {
                     <p>Started at: {date_creat.toLocaleDateString()} {date_creat.toLocaleTimeString()}</p>
                     <p>Completed at: {date_done.toLocaleDateString()} {date_done.toLocaleTimeString()}</p>
                     <div className="hosts-success">
-                        <p>Task(s) completed:</p>
+                        <p>Success:</p>
                         <HostsList hosts={action.hosts_successful} minimized={false} />
                     </div>
                     <div className="hosts-failed">
-                        <p>Task(s) failed:</p>
+                        <p>Failed:</p>
                         <HostsList hosts={action.hosts_failed} minimized={false} />
+                    </div>
+                    <div className="hosts-unreachable">
+                        <p>Unreachable:</p>
+                        <HostsList hosts={action.hosts_unreachable} minimized={false} />
                     </div>
                     <p>Output:</p>
                     <div className="command-json">
-                        <PrettyPrintJson data={{"command": action.command, "output" : action.result}}/>
+                        <PrettyPrintJson data={{"command": action.command, "output" : JSON.parse(action.result)}}/>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ function prepareResponse(output) {
         success_msgs: [],
         failure_msgs: [],
         hosts_success: [],
-        hosts_failed: []
+        hosts_unreachable: []
     }
 
     try {
@@ -19,7 +19,7 @@ function prepareResponse(output) {
 
     for (var host in hosts_results) {
         if (hosts_results[host]["unreachable"] != 0) {
-            response_content["hosts_failed"].push(host.replace(domain, ""));
+            response_content["hosts_unreachable"].push(host.replace(domain, ""));
             response_content["failure_msgs"].push(`UNREACHABLE: ${host.replace(domain, "")}`);
         } else if (hosts_results[host]["failures"] > 0) {
             response_content["hosts_failed"].push(host.replace(domain, ""));
