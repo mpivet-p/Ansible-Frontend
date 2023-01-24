@@ -3,7 +3,6 @@ const executeCommand = require("./executeCommand");
 async function taskHandler(confs, req, res) {
     try {
         var stations = req.body.stations.map(str => str + `.${process.env.CAMPUS_DOMAIN}`).join(',');
-        // console.log(req.body);
         const playbook = confs[req.body.taskName];
 
         var command = `${process.env.CMD_PREFIX} ${playbook.command}`;

@@ -14,7 +14,7 @@ function UploadBackgroundModal({ buttonText, children }) {
             <button className="request-btn" onClick={() => {
                 setIsOpen(true);
             }}>{buttonText}</button>
-            <Modal open={isOpen}><UploadBackgroundForm handler={handleSubmitChildren} /></Modal>
+            <Modal open={isOpen} setIsOpen={setIsOpen}><UploadBackgroundForm handler={handleSubmitChildren} /></Modal>
         </div>
     );
 }

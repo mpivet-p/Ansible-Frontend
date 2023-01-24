@@ -26,6 +26,19 @@ function ActionDetails() {
         });
     }, [action_id]);
 
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+          if (event.code === 'Escape') {
+            console.log("Escape");
+            window.history.go(-1);
+          }
+        };
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        }
+      }, []);
+
     if (action) {
         const date_creat = new Date(action.created_at);
         const date_done = new Date(action.done_at);

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import BackgroundModal from '../Background/BackgroundModal.js';
-import UploadBackgroundModal from '../UploadBackground/UploadBackgroundModal.js';
+import UploadBackgroundModal from '../Background/UploadBackgroundModal.js';
 import RequestButton from '../RequestButton.js';
 import TaskFormModal from '../TaskFormModal.js';
 

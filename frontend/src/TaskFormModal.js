@@ -31,7 +31,7 @@ function TaskFormModal({ task }) {
             <button className="request-btn" onClick={() => {
                 setIsOpen(true);
             }}>{task.displayName}</button>
-            <Modal open={isOpen}>
+            <Modal open={isOpen} setIsOpen={setIsOpen} >
             <div className="modal-form">
                 <form onSubmit={handleSubmit}>
                     {showNote()}

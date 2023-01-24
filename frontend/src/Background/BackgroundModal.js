@@ -14,7 +14,7 @@ function BackgroundModal({ buttonText, children }) {
             <button className="request-btn" onClick={() => {
                 setIsOpen(true);
             }}>{buttonText}</button>
-            <Modal open={isOpen}><BackgroundForm handler={handleSubmitChildren} /></Modal>
+            <Modal open={isOpen} setIsOpen={setIsOpen}><BackgroundForm handler={handleSubmitChildren} /></Modal>
         </div>
     );
 }

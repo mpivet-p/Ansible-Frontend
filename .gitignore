@@ -25,6 +25,7 @@ yarn-error.log*
 backend/node_modules
 .vscode
 playbooks/backgrounds
+playbooks/backgrounds-mini
 .env
 .env.local
 frontend/.env

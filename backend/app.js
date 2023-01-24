@@ -59,6 +59,8 @@ app.post("/welcome", auth, (req, res) => {
     res.status(200).send("Welcome 🙌 ");
 });
 
+app.use("/api/background-img", express.static("../playbooks/backgrounds-mini"));
+
 app.get("/check_token", auth, (req, res) => {
   console.log("check_token valid.")
   res.status(200).send("Token is valid!");
@@ -168,24 +170,6 @@ app.post("/delete_user", onlyAdmin, async (req, res) => {
     res.status(500).send("");
   }
 
-});
-
-app.post("/refresh_token", async (req, res) => {
-  try {
-    const refreshToken = req.body["refresh-token"] || req.query.refreshToken || req.headers["refresh-token"];
-    if (!refreshToken) {
-      return res.status(403).send("A token is required for refresh");
-    }
-    const decoded = jwt.verify(refreshToken, process.env.TOKEN_KEY);
-    if (!(decoded.refresh)) {
-      return(res.status(400).json("Refresh Token only allowed for /refresh"));
-    }
-    const email = decoded.email;
-    const user = await User.findOne({ email });
-    return res.status(200).json(await getTokensFromEmail(email, user));
-  } catch (err) {
-    console.log(err);
-  }
 });
 
 app.post("/update", onlyAdmin, async (req, res) => {

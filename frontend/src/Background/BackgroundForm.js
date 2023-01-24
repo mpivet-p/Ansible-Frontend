@@ -16,6 +16,7 @@ function BackgroundForm({handler}) {
             setImages(response.data.files);
         });
     }
+
     useEffect(() => {
         fetchProducts();
     }, []);
@@ -45,7 +46,7 @@ function BackgroundForm({handler}) {
                                     checked={background === image}
                                     onChange={handleChange}
                                 />
-                                    <img src={`../backgrounds/${image}`} width="140" heigth="78.75" alt={image}/>
+                                    <img src={`${process.env.REACT_APP_ADDRESS}/api/background-img/${image}`} width="140" heigth="78.75" alt={image}/>
                                 </label>
                             </div>);
                         })}

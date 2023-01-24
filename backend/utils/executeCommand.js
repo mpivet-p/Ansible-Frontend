@@ -24,7 +24,8 @@ async function completeAction(id, stdout, response_content) {
 }
 
 async function executeCommand(req, res, command, formatSuccessMsg, taskName) {
-    console.log(`${req.user.email} -> {${command}}`);
+    const current = new Date();
+    console.log(`${current.toLocaleDateString('es-ES')} ${current.toLocaleTimeString('es-ES')} ${req.user.email}: ${taskName}`);
     const id = await recordAction(req.body.stations, req.user.email, command, taskName);
     await child_process.exec(command, (error, stdout, stderr) => {
         if (error) {
