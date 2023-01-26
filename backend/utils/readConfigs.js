@@ -2,7 +2,7 @@ const fs = require('fs');
 const YAML = require('js-yaml');
 
 function readConfigs(req, res) {
-    const dirPath = "../playbooks-config/";
+    const dirPath = "./playbooks/playbooks-config/";
     var confs = {};
     const dirContent = fs.readdirSync(dirPath);
     dirContent.forEach(file => {

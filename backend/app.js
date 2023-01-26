@@ -35,7 +35,7 @@ const setupRoutesFromConfigs = require('./utils/setupRoutes.js')(app, playbooksC
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '../playbooks/backgrounds/')
+    cb(null, './playbooks/backgrounds/')
   },
   filename: (req, file, cb) => {
     cb(null, encodeURIComponent(file.originalname.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-zA-Z0-9-_.]+/g,'')))
@@ -59,7 +59,7 @@ app.post("/welcome", auth, (req, res) => {
     res.status(200).send("Welcome 🙌 ");
 });
 
-app.use("/api/background-img", express.static("../playbooks/backgrounds-mini"));
+app.use("/api/background-img", express.static("./playbooks/backgrounds-mini"));
 
 app.get("/check_token", auth, (req, res) => {
   console.log("check_token valid.")

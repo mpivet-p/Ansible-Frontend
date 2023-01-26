@@ -1,7 +1,0 @@
----
-taskName: ping
-route: "/api/ping"
-displayName: "Ping"
-playbook: false
-clusterTask: true
-command: "ansible -m ping -T 5 -f 300"

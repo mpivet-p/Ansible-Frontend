@@ -37,3 +37,6 @@ backend/scripts/venv
 mongo
 frontend/public/backgrounds
 backend/scripts/venv
+backend/ansible
+backend/playbooks/backgrounds
+backend/playbooks/backgrounds-mini

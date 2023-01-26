@@ -1,7 +1,0 @@
----
-taskName: reboot
-route: "/api/reboot"
-displayName: "Reboot"
-playbook: false
-clusterTask: true
-command: "ansible -bm reboot -f 300"

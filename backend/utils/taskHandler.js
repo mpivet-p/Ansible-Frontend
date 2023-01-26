@@ -6,6 +6,15 @@ async function taskHandler(confs, req, res) {
         const playbook = confs[req.body.taskName];
 
         var command = `${process.env.CMD_PREFIX} ${playbook.command}`;
+
+        if (playbook.clusterTask === true) {
+            if (playbook.playbook === true) {
+                command += ` --limit "${stations}"`;
+            } else {
+                command += ` "${stations}"`;
+            }
+        }
+
         if (playbook.extraVars) {
             for (const elem in req.body.extraVars) {
                 command += ` --extra-vars ${elem}='${req.body.extraVars[elem]}'`
@@ -19,11 +28,7 @@ async function taskHandler(confs, req, res) {
             return (`SUCCESS:  ${insert}`);
         };
         if (playbook.clusterTask === true) {
-            if (playbook.playbook === true) {
-                command += ` --limit "${stations}"`;
-            } else {
-                command += ` "${stations}"`;
-            }
+            command += " -f 300";
             executeCommand(req, res, command, formatSuccessMsg, playbook.displayName);
         }
     } catch (err) {

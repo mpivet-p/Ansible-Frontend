@@ -5,15 +5,22 @@ services:
   frontend:
     container_name: "frontend"
     restart: always
-    env_file: ./frontend/.env
     build:
       context: ./frontend
-    volumes:
-      - ./playbooks:/playbooks:ro
     ports:
       - "80:3000"
+
+  backend:
+    container_name: "backend"
+    restart: always
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend/playbooks:/usr/src/app/playbooks
     networks:
-      - web
+      - db
 
   mongodb:
     image: mongo:5.0
@@ -24,3 +31,9 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=clustertools
       - MONGO_INITDB_ROOT_PASSWORD=clust3r
+    networks:
+      - db
+
+networks:
+  db:
+    driver: bridge

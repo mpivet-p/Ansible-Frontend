@@ -5,6 +5,7 @@ function prepareResponse(output) {
         success_msgs: [],
         failure_msgs: [],
         hosts_success: [],
+        hosts_failed: [],
         hosts_unreachable: []
     }
 

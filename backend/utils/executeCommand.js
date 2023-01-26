@@ -31,6 +31,7 @@ async function executeCommand(req, res, command, formatSuccessMsg, taskName) {
         if (error) {
             console.log(`error: ${error.message}`);
         }
+        // console.log(stdout)
         let response_content = prepareResponse(stdout);
         // response_content["hosts_success"] = ["c2r12s5.42madrid.com"]; // Only for development
         // // response_content["hosts_success"] = []; // Only for development
