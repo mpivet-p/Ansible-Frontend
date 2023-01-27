@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const createUserIfEmpty = require("../utils/createUserIfEmpty");
 
 const { DB_USER, DB_PASS, DB_HOST, DB_PORT } = process.env;
 
@@ -10,6 +11,7 @@ exports.connect = () => {
     })
     .then(() => {
       console.log("Successfully connected to database");
+     createUserIfEmpty();
     })
     .catch((error) => {
       console.log("database connection failed. exiting now...");

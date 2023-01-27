@@ -13,7 +13,7 @@ const onlyAdmin = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, config.TOKEN_KEY);
     const resultUser = await User.findOne({ email: decoded.email });
-    if (resultUser.kind != "admin") {
+    if (!resultUser || resultUser.kind != "admin") {
       return (res.status(401).send("Action require admin account"));
     }
     req.user = decoded;
