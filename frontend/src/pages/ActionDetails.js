@@ -10,7 +10,7 @@ function ActionDetails() {
     let { action_id } = useParams();
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_ADDRESS}/actions/${action_id}`, {headers: {"x-access-token": localStorage.getItem("token")}})
+        axios.get(`${process.env.REACT_APP_ADDRESS}/api/actions/${action_id}`, {headers: {"x-access-token": localStorage.getItem("token")}})
         .then(response => {
             setAction(response.data[0]);
         })

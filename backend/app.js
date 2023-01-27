@@ -49,24 +49,24 @@ app.post("/api/background/upload", [auth, upload.single('background-upload')], b
 app.get("/api/background/list", auth, background_list);
 app.get("/api/task-list", auth, taskList.bind(null, playbooksConfigs));
 
-app.post("/welcome", auth, (req, res) => {
-    const token = req.body.token || req.query.token || req.headers["x-access-token"];
-    try {
-        const decoded = jwt.verify(token, process.env.TOKEN_KEY);
-    } catch (err) {
-        ;
-    }
-    res.status(200).send("Welcome 🙌 ");
-});
+// app.post("/welcome", auth, (req, res) => {
+//     const token = req.body.token || req.query.token || req.headers["x-access-token"];
+//     try {
+//         const decoded = jwt.verify(token, process.env.TOKEN_KEY);
+//     } catch (err) {
+//         ;
+//     }
+//     res.status(200).send("Welcome 🙌 ");
+// });
 
 app.use("/api/background-img", express.static("./playbooks/backgrounds-mini"));
 
-app.get("/check_token", auth, (req, res) => {
+app.get("/api/check_token", auth, (req, res) => {
   console.log("check_token valid.")
   res.status(200).send("Token is valid!");
 });
 
-app.get("/user", auth, async (req, res) => {
+app.get("/api/user", auth, async (req, res) => {
     const token = req.body.token || req.query.token || req.headers["x-access-token"];
     try {
         const decoded = jwt.verify(token, process.env.TOKEN_KEY);
@@ -77,7 +77,7 @@ app.get("/user", auth, async (req, res) => {
     }
 });
 
-app.get("/users", onlyAdmin, async (req, res) => {
+app.get("/api/users", onlyAdmin, async (req, res) => {
     try {
         const resultUsers = await User.find({}, { email: 1, kind: 1, _id: 0 });
         res.status(200).send(resultUsers);
@@ -86,7 +86,7 @@ app.get("/users", onlyAdmin, async (req, res) => {
     }
 });
 
-app.get("/actions", auth, async (req, res) => {
+app.get("/api/actions", auth, async (req, res) => {
     var page = (req.query.page <= 1) ? 0 : req.query.page - 1;
     const page_size = 8;
     try {
@@ -103,7 +103,7 @@ app.get("/actions", auth, async (req, res) => {
     }
 });
 
-app.get("/actions/:id*", auth, async (req, res) => {
+app.get("/api/actions/:id*", auth, async (req, res) => {
     try {
       var id = req.params.id;
       if (id.length != 24) {
@@ -116,7 +116,7 @@ app.get("/actions/:id*", auth, async (req, res) => {
     }
 });
 
-app.post("/register", onlyAdmin, async (req, res) => {
+app.post("/api/register", onlyAdmin, async (req, res) => {
   try {
 
     const { email, password, kind } = req.body;
@@ -152,7 +152,7 @@ app.post("/register", onlyAdmin, async (req, res) => {
 
 });
 
-app.post("/delete_user", onlyAdmin, async (req, res) => {
+app.post("/api/delete_user", onlyAdmin, async (req, res) => {
   try {
 
     const { email } = req.body;
@@ -172,7 +172,7 @@ app.post("/delete_user", onlyAdmin, async (req, res) => {
 
 });
 
-app.post("/update", onlyAdmin, async (req, res) => {
+app.post("/api/update", onlyAdmin, async (req, res) => {
     try {
       const { email, kind } = req.body;
       // Validate user input
@@ -194,7 +194,7 @@ app.post("/update", onlyAdmin, async (req, res) => {
   
 });
 
-app.post("/changepwd", auth, async (req, res) => {
+app.post("/api/changepwd", auth, async (req, res) => {
   try {
     const { user, password } = req.body;
 
@@ -233,7 +233,7 @@ app.post("/changepwd", auth, async (req, res) => {
 
 });
 
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
 
     try {
       const { email, password } = req.body;

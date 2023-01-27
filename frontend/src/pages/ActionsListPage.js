@@ -12,7 +12,7 @@ function ActionsListPage() {
     }, [pageCount]);
 
     const fetch_actions = (page) => {
-        axios.get(`${process.env.REACT_APP_ADDRESS}/actions?page=${page}`, {headers: {"x-access-token": localStorage.getItem("token")}})
+        axios.get(`${process.env.REACT_APP_ADDRESS}/api/actions?page=${page}`, {headers: {"x-access-token": localStorage.getItem("token")}})
         .then(response => {
             setActions(actions => ([...actions, ...response.data]));
             pageCount++;

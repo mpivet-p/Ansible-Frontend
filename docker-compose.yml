@@ -19,6 +19,8 @@ services:
       - "5000:5000"
     volumes:
       - ./backend/playbooks:/usr/src/app/playbooks
+    depends_on:
+      - mongodb
     networks:
       - db
 

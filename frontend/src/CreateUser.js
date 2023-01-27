@@ -12,7 +12,7 @@ function CreateUser() {
 
     const sendRequest = () => {
         axios.defaults.headers.common["x-access-token"] = localStorage.getItem("token");
-        axios.post(`${process.env.REACT_APP_ADDRESS}/register`, user)
+        axios.post(`${process.env.REACT_APP_ADDRESS}/api/register`, user)
         .then(response => {
             // window.location.href = "/admin/users";
         })

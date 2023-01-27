@@ -38,7 +38,7 @@ function ChangePasswordPage() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        axios.post(`${process.env.REACT_APP_ADDRESS}/changepwd`, inputs,
+        axios.post(`${process.env.REACT_APP_ADDRESS}/api/changepwd`, inputs,
             {headers: {
                 "x-access-token": localStorage.getItem("token")
             }})

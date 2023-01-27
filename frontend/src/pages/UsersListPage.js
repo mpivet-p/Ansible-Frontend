@@ -8,7 +8,7 @@ function UsersListPage() {
     const roles = ["admin", "staff", "guest"];
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_ADDRESS}/users`, {headers: {"x-access-token": localStorage.getItem("token")}})
+        axios.get(`${process.env.REACT_APP_ADDRESS}/api/users`, {headers: {"x-access-token": localStorage.getItem("token")}})
         .then(response => {
             const data =  response.data;
             setUsers(data);
@@ -26,7 +26,7 @@ function UsersListPage() {
     }, [users])
 
     const role_change = (event, email) => {
-        axios.post(`${process.env.REACT_APP_ADDRESS}/update`, {email: email, kind: event.target.value}, {headers: {"x-access-token": localStorage.getItem("token")}})
+        axios.post(`${process.env.REACT_APP_ADDRESS}/api/update`, {email: email, kind: event.target.value}, {headers: {"x-access-token": localStorage.getItem("token")}})
         .then(response => {
         })
         .catch(err => {
@@ -41,7 +41,7 @@ function UsersListPage() {
             return;
         }
         axios.defaults.headers.common["x-access-token"] = localStorage.getItem("token");
-        axios.post(`${process.env.REACT_APP_ADDRESS}/delete_user`, {"email": user})
+        axios.post(`${process.env.REACT_APP_ADDRESS}/api/delete_user`, {"email": user})
         .then(response => {
         })
         .catch(err => {

@@ -19,7 +19,7 @@ function LoginPage() {
 
     const check_token = (token) => {
         axios.defaults.headers.common["x-access-token"] = localStorage.getItem("token");
-        axios.get(`${process.env.REACT_APP_ADDRESS}/check_token`)
+        axios.get(`${process.env.REACT_APP_ADDRESS}/api/check_token`)
         .then(response => {
             if (response.status === 200) {
                 return true;
@@ -52,7 +52,7 @@ function LoginPage() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post(`${process.env.REACT_APP_ADDRESS}/login`, inputs)
+        axios.post(`${process.env.REACT_APP_ADDRESS}/api/login`, inputs)
         .then(response => {
             //get token from response
             const token  =  response.data.token;
